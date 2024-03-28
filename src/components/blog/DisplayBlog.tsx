@@ -20,7 +20,7 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
     return <LoadingComp />;
   }
   return (
-    <div className='container grid grid-cols-1 md:grid-cols-4 gap-6 m-auto pb-3 pt-5 '>
+    <div className='container grid grid-cols-1 md:grid-cols-4 gap-5 m-auto pb-3 pt-5 '>
       {posts &&
         posts.map((post: Post) => (
           <div
