@@ -43,12 +43,12 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
               <h5
                 className='mb-2 font-bold tracking-tight text-gray-700 dark:text-white'
                 style={{
-                  maxHeight: "3.4rem",
-                  minHeight: "3.4rem",
+                  maxHeight: "3.3rem",
+                  minHeight: "3.3rem",
                   overflow: "hidden",
                   display: "-webkit-box",
                   WebkitLineClamp: 2,
-                  lineHeight: "25px",
+                  lineHeight: 1.3,
                   fontSize: "21px",
                   WebkitBoxOrient: "vertical",
                 }}>
