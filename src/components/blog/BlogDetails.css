@@ -1,0 +1,124 @@
+.details .title {
+  font-size: 36px;
+  font-weight: 700;
+  padding: 0;
+  color: #8500a5;
+  text-align: left;
+  font-family: "Dancing Script", "Helvetica Neue", cursive;
+}
+.details .blog-description {
+  text-align: left;
+}
+.details .dateAuthor {
+  font-size: 16px;
+  line-height: 1;
+}
+.details .dateAuthor span {
+  color: #34b7f1;
+}
+.details .blog-description h1 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.details .blog-description h2 {
+  font-size: 26px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.details .blog-description h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.details .blog-description h4 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.details .blog-description h5 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.details .blog-description h6 {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.details .blog-description img {
+  margin: auto;
+  padding: 5px 0;
+}
+.details .blog-description p {
+  margin-bottom: 12px;
+  text-align: justify;
+  line-height: 1.7;
+}
+.details .blog-description ul {
+  margin-bottom: 10px;
+}
+.details .blog-description ul li {
+  list-style-type: disc;
+  margin-left: 40px;
+  padding-bottom: 10px;
+}
+.details .keep-reading-div {
+  border-left: 3px solid #145260;
+}
+.details .keep-reading {
+  color: #145260;
+  padding: 0 0 0 20px;
+  margin: 0;
+  font-family: "Dancing Script", "Helvetica Neue", cursive;
+  font-size: 60px;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  line-height: 0.9;
+}
+.details .keep-reading span {
+  display: block;
+  font-style: italic;
+}
+.details .share-scetion h4 {
+  font-size: 22px;
+  padding-bottom: 12px;
+  font-family: "Khand", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1.2;
+}
+.details .share-icons .share-item {
+  display: inline-block;
+  width: fit-content;
+  min-width: 160px;
+  background-color: #fff0;
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 6px;
+  padding: 10px;
+  padding-right: 30px;
+}
+.details .side-bar .share-item {
+  display: block;
+}
+.details .share-icons button {
+  display: flex;
+  align-items: center;
+}
+.details .share-icons .icon-details {
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ///////////////////////// Dark Moe css */
+.dark .details .title {
+  color: #fff;
+}
+.dark .keep-reading-div {
+  border-left: 3px solid #fff;
+}
+.dark .keep-reading {
+  color: #fff;
+}

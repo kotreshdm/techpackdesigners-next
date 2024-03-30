@@ -1,13 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import Constants from "@/utils/Constants";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = {
+interface PostState {
+  posts: any[];
+  categories: any[];
+  post: any;
+  postsCurrentPage: number;
+  categoriesCurrentPage: number;
+  pageSize: number;
+  loading: boolean;
+  error: string;
+}
+
+const initialState: PostState = {
   posts: [],
+  categories: [],
   post: {},
   postsCurrentPage: 1,
+  categoriesCurrentPage: 1,
   pageSize: 8,
   loading: false,
-  error: null,
+  error: "",
 };
+
+// Generates async thunk for fetching posts
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await axios.get(Constants.apiRoutes.getAllPosts);
+  return response.data;
+});
+
+// Generates async thunk for fetching posts
+export const fetchCategories = createAsyncThunk(
+  "categories/fetchCategories",
+  async () => {
+    const response = await axios.get(Constants.apiRoutes.getAllCategories);
+    return response.data;
+  }
+);
 
 const postSlice = createSlice({
   name: "posts",
@@ -19,12 +49,15 @@ const postSlice = createSlice({
     },
     loadingPost: (state) => {
       state.loading = true;
-      state.error = null;
+      state.error = "";
       state.post = {};
     },
-    reset: () => initialState, // Reset state to initial state
+    reset: () => initialState,
+    updatePostsCurrentPage: (state, action) => {
+      state.postsCurrentPage = action.payload;
+    },
     resetBlogDisplay: (state) => {
-      state.error = null;
+      state.error = "";
       state.post = {};
     },
     getPostBySlug: (state, action) => {
@@ -39,11 +72,43 @@ const postSlice = createSlice({
       state.loading = false;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPosts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+        state.error = "";
+        state.postsCurrentPage = 1;
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.posts = [];
+        state.error = action.error.message || "Something went wrong";
+      })
+      .addCase(fetchCategories.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.loading = false;
+        state.categories = action.payload;
+        state.error = "";
+        state.categoriesCurrentPage = 1;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.loading = false;
+        state.categories = [];
+        state.error = action.error.message || "Something went wrong";
+      });
+  },
 });
 
 export const {
   loadPosts,
   reset,
+  updatePostsCurrentPage,
   getPostBySlug,
   loadingPost,
   resetBlogDisplay,

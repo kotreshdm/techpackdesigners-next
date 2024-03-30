@@ -1,13 +1,12 @@
 "use client";
-import DispalyBlog from "@/components/blog/DisplayBlog";
-import { loadPosts, loadingPost } from "@/redux/posts/postSlice";
-import Constants from "@/utils/Constants";
-import axios from "axios";
+import DisplayBlog from "@/components/blog/DisplayBlog";
+import { fetchPosts, updatePostsCurrentPage } from "@/redux/posts/postSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from "flowbite-react";
+import CategoriesBanner from "@/components/blog/CategoriesBanner";
 
 interface Post {
-  // Define the properties of a post
   postSlug: string;
   bannerImage?: string;
   postName: string;
@@ -33,36 +32,42 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     if (posts.length === 0) {
-      getPosts();
+      dispatch(fetchPosts() as any);
     }
   }, []);
+
   useEffect(() => {
     updateDisplayPosts();
   }, [posts, postsCurrentPage, pageSize]);
+  const totalItems = posts.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
   const updateDisplayPosts = () => {
-    const totalItems = posts.length;
-    const totalPages = Math.ceil(totalItems / pageSize);
     const startIndex = (postsCurrentPage - 1) * pageSize;
     const endIndex = Math.min(startIndex + pageSize, totalItems);
-
     const filteredPosts = posts.slice(startIndex, endIndex);
     setDisplayPosts(filteredPosts);
   };
-
-  async function getPosts() {
-    dispatch(loadingPost());
-    try {
-      const response = await axios.get(Constants.apiRoutes.getAllPosts);
-      dispatch(loadPosts(response.data));
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-    } finally {
-    }
-  }
-
   return (
     <div>
-      {loading ? <div>Loading...</div> : <DispalyBlog posts={displayPosts} />}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <CategoriesBanner />
+          <DisplayBlog posts={displayPosts} />
+          <div className='flex overflow-x-auto sm:justify-center py-6'>
+            <Pagination
+              layout='pagination'
+              currentPage={postsCurrentPage}
+              totalPages={totalPages}
+              onPageChange={(e) => dispatch(updatePostsCurrentPage(e))}
+              previousLabel='Go back'
+              nextLabel='Go forward'
+              showIcons
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

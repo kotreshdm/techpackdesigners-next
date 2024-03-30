@@ -1,5 +1,5 @@
 const Constants = {
-  baseURL: process.env.BASE_URL,
+  baseURL: "http://localhost:3000/",
   Navigation: {
     home: "/",
     about: "/about",
@@ -26,7 +26,8 @@ const Constants = {
     linkedIn: "fburl",
   },
   apiRoutes: {
-    getAllPosts: "/api/get-posts",
+    getAllPosts: "http://localhost:3000/api/get-posts",
+    getAllCategories: "http://localhost:3000/api/get-categories",
     getpostOnslug: "http://localhost:3000/api/posts",
   },
   SEO: {

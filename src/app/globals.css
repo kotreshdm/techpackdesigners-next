@@ -15,10 +15,25 @@
 body {
   color: rgb(var(--foreground-rgb));
   margin: 0;
+  /* font-family: "Dancing Script", "Helvetica Neue", cursive; */
+  font-family: "DM Sans", sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.catList {
+  background-color: #145260;
+}
+.catList p span {
+  color: #ffffff;
+  fill: #ffffff;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.1;
 }
