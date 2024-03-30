@@ -25,6 +25,16 @@ const Constants = {
     google: "fburl",
     linkedIn: "fburl",
   },
-  apiRoutes: { getAllPosts: "/api/get-posts" },
+  apiRoutes: {
+    getAllPosts: "/api/get-posts",
+    getpostOnslug: "http://localhost:3000/api/posts",
+  },
+  SEO: {
+    title: "Clothing Designer | Tech Pack Designer | Clothing Manufacturer",
+    description:
+      "Clothing Designer, Apparel Tech Pack Designer  and Clothing Manufacturer Assist Brands in Apparel Design, Tech Packs and Garment Manufacturing",
+    keywords:
+      "Clothing Designer,Clothing Manufacturer, Clothing Design, Apparel Tech Pack, Garment Production, Garment Manufacturer, Clothing Line Sheet, Tech Pack Designer,Fashion Studio, Measurement Spec Sheet,Garment Producer, Garment Manufacturer, Apparel Manufacturer, designer studio clothing,garment spec sheet, apparel line sheet, Freelance Fashion Designer",
+  },
 };
 export default Constants;

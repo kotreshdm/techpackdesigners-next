@@ -1,6 +1,6 @@
 "use client";
 import DispalyBlog from "@/components/blog/DisplayBlog";
-import { loadPosts } from "@/redux/posts/postSlice";
+import { loadPosts, loadingPost } from "@/redux/posts/postSlice";
 import Constants from "@/utils/Constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -19,12 +19,12 @@ interface RootState {
     posts: Post[];
     postsCurrentPage: number;
     pageSize: number;
+    loading: boolean;
   };
 }
 
 const Blog: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const { posts, postsCurrentPage, pageSize } = useSelector(
+  const { loading, posts, postsCurrentPage, pageSize } = useSelector(
     (state: RootState) => state.posts
   );
 
@@ -50,16 +50,13 @@ const Blog: React.FC = () => {
   };
 
   async function getPosts() {
-    setLoading(true);
-    console.error("Error fetching posts:");
-
+    dispatch(loadingPost());
     try {
       const response = await axios.get(Constants.apiRoutes.getAllPosts);
       dispatch(loadPosts(response.data));
     } catch (error) {
       console.error("Error fetching posts:", error);
     } finally {
-      setLoading(false);
     }
   }
 

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Constants from "../../utils/Constants";
 import LoadingComp from "../LoadingComp";
@@ -27,7 +28,7 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
             key={post.postSlug}
             className='shadow-lg rounded-t-lg hover:shadow-2xl bg-white mt-3 shadow dark:bg-gray-800 dark:border-gray-700 '>
             {post.bannerImage ? (
-              <a href={`${Constants.Navigation.blog}/${post.postSlug}`}>
+              <a href={`${Constants.Navigation.blog}/slug/:${post.postSlug}`}>
                 <img
                   className='rounded-t-lg m-auto'
                   src={post.bannerImage}
