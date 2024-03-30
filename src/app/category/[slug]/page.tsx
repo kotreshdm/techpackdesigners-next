@@ -1,3 +1,99 @@
-export default function CategorySlug({ params }: { params: {} }) {
-  return <h1>Home Page</h1>;
+"use client";
+import DisplayBlog from "@/components/blog/DisplayBlog";
+import {
+  fetchPosts,
+  updateCategoriesCurrentPage,
+  updatePostsCurrentPage,
+} from "@/redux/posts/postSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from "flowbite-react";
+import CategoriesBanner from "@/components/blog/CategoriesBanner";
+
+type Props = {
+  params: { slug: string };
+};
+
+interface Post {
+  postSlug: string;
+  bannerImage?: string;
+  postName: string;
+  SEODescription: string;
+  categorySlug: string;
 }
+
+interface RootState {
+  posts: {
+    posts: Post[];
+    categoriesCurrentPage: number;
+    pageSize: number;
+    loading: boolean;
+  };
+}
+
+const CategoriesDisp = ({ params }: Props) => {
+  const { loading, posts, categoriesCurrentPage, pageSize } = useSelector(
+    (state: RootState) => state.posts
+  );
+
+  const dispatch = useDispatch();
+  const [displayPosts, setDisplayPosts] = useState<Post[]>([]);
+  const [totalPages, setTotalPages] = useState(0);
+
+  useEffect(() => {
+    if (posts.length === 0) {
+      dispatch(fetchPosts() as any);
+    }
+  }, []);
+
+  useEffect(() => {
+    updateDisplayPosts();
+  }, [posts, categoriesCurrentPage, pageSize, params.slug]);
+  let totalItems = 0;
+
+  const updateDisplayPosts = () => {
+    const catPost = posts.filter((item) => item.categorySlug === params.slug);
+    totalItems = catPost.length;
+    console.log("catPost", catPost, totalItems, pageSize);
+    setTotalPages(Math.ceil(totalItems / pageSize));
+    const startIndex = (categoriesCurrentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize, totalItems);
+    const filteredPosts = catPost.slice(startIndex, endIndex);
+    setDisplayPosts(filteredPosts);
+  };
+
+  return (
+    <div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <CategoriesBanner />
+          {displayPosts.length > 0 ? (
+            <DisplayBlog posts={displayPosts} />
+          ) : (
+            <p>
+              No post found under this category please try diffrent category
+            </p>
+          )}
+
+          <div className='flex overflow-x-auto sm:justify-center py-6'>
+            {totalPages > 1 ? (
+              <Pagination
+                layout='pagination'
+                currentPage={categoriesCurrentPage}
+                totalPages={totalPages}
+                onPageChange={(e) => dispatch(updateCategoriesCurrentPage(e))}
+                previousLabel='Go back'
+                nextLabel='Go forward'
+                showIcons
+              />
+            ) : null}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default CategoriesDisp;

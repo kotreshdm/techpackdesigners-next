@@ -56,6 +56,9 @@ const postSlice = createSlice({
     updatePostsCurrentPage: (state, action) => {
       state.postsCurrentPage = action.payload;
     },
+    updateCategoriesCurrentPage: (state, action) => {
+      state.categoriesCurrentPage = action.payload;
+    },
     resetBlogDisplay: (state) => {
       state.error = "";
       state.post = {};
@@ -112,6 +115,7 @@ export const {
   getPostBySlug,
   loadingPost,
   resetBlogDisplay,
+  updateCategoriesCurrentPage,
 } = postSlice.actions;
 
 export default postSlice.reducer;

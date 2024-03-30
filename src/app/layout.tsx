@@ -37,7 +37,7 @@ export default function RootLayout({
         <ReactReduxProvider>
           <ThemeProvider>
             <ApplicationHeader />
-            <main className='flex flex-col items-center min-h-screen justify-between dark:bg-gray-800'>
+            <main className='items-center min-h-screen justify-between dark:bg-gray-800'>
               {children}
             </main>
             <ApplicationFooter />
