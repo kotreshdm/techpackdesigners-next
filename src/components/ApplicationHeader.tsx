@@ -8,10 +8,13 @@ import { usePathname } from "next/navigation";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "@/redux/theme/themeSlice";
+import { useRouter } from "next/navigation";
+import { updateSearch } from "@/redux/posts/postSlice";
 const ApplicationHeader = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const path = usePathname();
   const { theme } = useSelector((state: any) => state.theme);
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
   const dispatch = useDispatch();
   const navMenu = [
     {
@@ -23,7 +26,11 @@ const ApplicationHeader = () => {
       url: Constants.Navigation.blog,
     },
   ];
-
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    dispatch(updateSearch(searchTerm));
+    router.push(`/search?term=${encodeURIComponent(searchTerm)}`);
+  };
   return (
     <Navbar className='border-b-2 sticky top-0 z-30'>
       <div className='flex'>
@@ -46,18 +53,17 @@ const ApplicationHeader = () => {
           ))}
         </Navbar.Collapse>
       </div>
-      <div className='flex gap-2 md:order-4'>
-        <form>
+      <div className='flex gap-0 md:order-4'>
+        <form onSubmit={handleSubmit}>
           <TextInput
             type='text'
             placeholder='Search...'
-            rightIcon={AiOutlineSearch}
-            className='hidden lg:inline'
+            className='hidden lg:inline hover:pointer'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
-        <Button className='w-12 h-10 lg:hidden' color='gray' pill>
+        <Button onClick={handleSubmit} className='w-12 h-10 mr-3' color='gray'>
           <AiOutlineSearch />
         </Button>
         <Button

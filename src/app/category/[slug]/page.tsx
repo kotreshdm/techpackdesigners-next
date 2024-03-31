@@ -1,7 +1,6 @@
 "use client";
 import DisplayBlog from "@/components/blog/DisplayBlog";
 import {
-  fetchPosts,
   resetCategoriesCurrentPage,
   updateCategoriesCurrentPage,
 } from "@/redux/posts/postSlice";
@@ -26,7 +25,7 @@ interface RootState {
   posts: {
     posts: Post[];
     categoriesCurrentPage: number;
-    pageSize: number;
+    categoriesPageSize: number;
     loading: boolean;
     selectedCategory: string;
     postFetchTime: any;
@@ -40,9 +39,7 @@ const CategoriesDisp = ({ params }: Props) => {
     posts,
     selectedCategory,
     categoriesCurrentPage,
-    pageSize,
-    postFetchTime,
-    refreshTime,
+    categoriesPageSize,
   } = useSelector((state: RootState) => state.posts);
 
   const dispatch = useDispatch();
@@ -51,7 +48,7 @@ const CategoriesDisp = ({ params }: Props) => {
 
   useEffect(() => {
     updateDisplayPosts();
-  }, [posts, categoriesCurrentPage, pageSize, params.slug]);
+  }, [posts, categoriesCurrentPage, categoriesPageSize, params.slug]);
   let totalItems = 0;
 
   const updateDisplayPosts = () => {
@@ -60,9 +57,9 @@ const CategoriesDisp = ({ params }: Props) => {
     }
     const catPost = posts.filter((item) => item.categorySlug === params.slug);
     totalItems = catPost.length;
-    setTotalPages(Math.ceil(totalItems / pageSize));
-    const startIndex = (categoriesCurrentPage - 1) * pageSize;
-    const endIndex = Math.min(startIndex + pageSize, totalItems);
+    setTotalPages(Math.ceil(totalItems / categoriesPageSize));
+    const startIndex = (categoriesCurrentPage - 1) * categoriesPageSize;
+    const endIndex = Math.min(startIndex + categoriesPageSize, totalItems);
     const filteredPosts = catPost.slice(startIndex, endIndex);
     setDisplayPosts(filteredPosts);
   };

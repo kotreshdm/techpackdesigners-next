@@ -14,6 +14,8 @@ interface PostState {
   loading: boolean;
   error: string;
   refreshTime: number;
+  categoriesPageSize: number;
+  searchPosts: string;
 }
 
 const initialState: PostState = {
@@ -25,9 +27,11 @@ const initialState: PostState = {
   categoriesCurrentPage: 1,
   selectedCategory: "",
   pageSize: 8,
+  categoriesPageSize: 8,
   loading: false,
   error: "",
   refreshTime: 1 * 60 * 60,
+  searchPosts: "",
 };
 
 // Generates async thunk for fetching posts
@@ -62,6 +66,9 @@ const postSlice = createSlice({
     updatePostsCurrentPage: (state, action) => {
       state.postsCurrentPage = action.payload;
     },
+    updateSearch: (state, action) => {
+      state.searchPosts = action.payload;
+    },
     updateCategoriesCurrentPage: (state, action) => {
       state.categoriesCurrentPage = action.payload;
     },
@@ -89,6 +96,7 @@ const postSlice = createSlice({
     builder
       .addCase(fetchPosts.pending, (state) => {
         state.loading = true;
+        state.searchPosts = "";
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.loading = false;
@@ -128,6 +136,7 @@ export const {
   resetBlogDisplay,
   updateCategoriesCurrentPage,
   resetCategoriesCurrentPage,
+  updateSearch,
 } = postSlice.actions;
 
 export default postSlice.reducer;
