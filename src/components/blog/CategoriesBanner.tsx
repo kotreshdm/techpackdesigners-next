@@ -32,8 +32,6 @@ const CategoriesBanner = () => {
     if (categories.length === 0) {
       dispatch(fetchCategories() as any);
     }
-  }, []);
-  useEffect(() => {
     if (posts.length === 0) {
       dispatch(fetchPosts() as any);
     } else {

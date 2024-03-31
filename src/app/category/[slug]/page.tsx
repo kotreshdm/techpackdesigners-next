@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination } from "flowbite-react";
 import CategoriesBanner from "@/components/blog/CategoriesBanner";
+import LoadingComp from "@/components/LoadingComp";
 
 type Props = {
   params: { slug: string };
@@ -66,11 +67,11 @@ const CategoriesDisp = ({ params }: Props) => {
 
   return (
     <div>
+      <CategoriesBanner />
       {loading ? (
-        <div>Loading...</div>
+        <LoadingComp />
       ) : (
         <>
-          <CategoriesBanner />
           {displayPosts.length > 0 ? (
             <DisplayBlog posts={displayPosts} />
           ) : (

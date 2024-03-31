@@ -8,6 +8,7 @@ import SharePost from "./SharePost";
 import Constants from "@/utils/Constants";
 import DispalyBlog from "./DisplayBlog";
 import CategoriesBanner from "./CategoriesBanner";
+import LoadingComp from "../LoadingComp";
 export default function BlogDetails({ slug }: any) {
   const dispatch = useDispatch();
   const { posts, post, loading } = useSelector((state: any) => state.posts);
@@ -35,7 +36,7 @@ export default function BlogDetails({ slug }: any) {
   let quote = post?.SEODescription;
   let hashtag = "#" + post?.SEOKeywords;
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingComp />;
   }
   return (
     <>

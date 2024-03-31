@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination } from "flowbite-react";
 import CategoriesBanner from "@/components/blog/CategoriesBanner";
+import LoadingComp from "@/components/LoadingComp";
 
 interface Post {
   postSlug: string;
@@ -45,11 +46,11 @@ const Blog: React.FC = () => {
   };
   return (
     <div>
+      <CategoriesBanner />
       {loading ? (
-        <div>Loading...</div>
+        <LoadingComp />
       ) : (
         <>
-          <CategoriesBanner />
           <DisplayBlog posts={displayPosts} />
           <div className='flex overflow-x-auto sm:justify-center py-6'>
             <Pagination
