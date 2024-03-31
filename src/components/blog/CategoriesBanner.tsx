@@ -21,9 +21,7 @@ interface RootState {
 }
 
 const CategoriesBanner = () => {
-  const { categories, categoriesCurrentPage, pageSize } = useSelector(
-    (state: RootState) => state.posts
-  );
+  const { categories } = useSelector((state: RootState) => state.posts);
   const dispatch = useDispatch();
   useEffect(() => {
     if (categories.length === 0) {

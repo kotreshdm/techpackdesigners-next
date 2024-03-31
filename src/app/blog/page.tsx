@@ -19,13 +19,20 @@ interface RootState {
     postsCurrentPage: number;
     pageSize: number;
     loading: boolean;
+    postFetchTime: any;
+    refreshTime: number;
   };
 }
 
 const Blog: React.FC = () => {
-  const { loading, posts, postsCurrentPage, pageSize } = useSelector(
-    (state: RootState) => state.posts
-  );
+  const {
+    loading,
+    posts,
+    postsCurrentPage,
+    postFetchTime,
+    refreshTime,
+    pageSize,
+  } = useSelector((state: RootState) => state.posts);
 
   const dispatch = useDispatch();
   const [displayPosts, setDisplayPosts] = useState<Post[]>([]);
@@ -33,6 +40,15 @@ const Blog: React.FC = () => {
   useEffect(() => {
     if (posts.length === 0) {
       dispatch(fetchPosts() as any);
+    } else {
+      if (postFetchTime) {
+        const lastFetchedDate = new Date(postFetchTime);
+        const dataTIme = new Date();
+        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
+        if (diff > refreshTime) {
+          dispatch(fetchPosts() as any);
+        }
+      }
     }
   }, []);
 

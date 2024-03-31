@@ -14,7 +14,9 @@ import DispalyBlog from "./DisplayBlog";
 import CategoriesBanner from "./CategoriesBanner";
 export default function BlogDetails({ slug }: any) {
   const dispatch = useDispatch();
-  const { posts, post, loading } = useSelector((state: any) => state.posts);
+  const { posts, post, loading, refreshTime, postFetchTime } = useSelector(
+    (state: any) => state.posts
+  );
   const [keepReading, setKeepReading] = useState<any[]>([]);
   useEffect(() => {
     dispatch(loadingPost());
@@ -24,6 +26,15 @@ export default function BlogDetails({ slug }: any) {
   useEffect(() => {
     if (posts.length === 0) {
       dispatch(fetchPosts() as any);
+    } else {
+      if (postFetchTime) {
+        const lastFetchedDate = new Date(postFetchTime);
+        const dataTIme = new Date();
+        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
+        if (diff > refreshTime) {
+          dispatch(fetchPosts() as any);
+        }
+      }
     }
   }, []);
   useEffect(() => {

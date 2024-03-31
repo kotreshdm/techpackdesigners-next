@@ -4,24 +4,30 @@ import axios from "axios";
 
 interface PostState {
   posts: any[];
+  postFetchTime: any;
   categories: any[];
   post: any;
   postsCurrentPage: number;
   categoriesCurrentPage: number;
+  selectedCategory: string;
   pageSize: number;
   loading: boolean;
   error: string;
+  refreshTime: number;
 }
 
 const initialState: PostState = {
   posts: [],
+  postFetchTime: null,
   categories: [],
   post: {},
   postsCurrentPage: 1,
   categoriesCurrentPage: 1,
+  selectedCategory: "",
   pageSize: 8,
   loading: false,
   error: "",
+  refreshTime: 1 * 60 * 60,
 };
 
 // Generates async thunk for fetching posts
@@ -59,6 +65,10 @@ const postSlice = createSlice({
     updateCategoriesCurrentPage: (state, action) => {
       state.categoriesCurrentPage = action.payload;
     },
+    resetCategoriesCurrentPage: (state, action) => {
+      state.categoriesCurrentPage = 1;
+      state.selectedCategory = action.payload;
+    },
     resetBlogDisplay: (state) => {
       state.error = "";
       state.post = {};
@@ -85,6 +95,7 @@ const postSlice = createSlice({
         state.posts = action.payload;
         state.error = "";
         state.postsCurrentPage = 1;
+        state.postFetchTime = new Date();
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.loading = false;
@@ -116,6 +127,7 @@ export const {
   loadingPost,
   resetBlogDisplay,
   updateCategoriesCurrentPage,
+  resetCategoriesCurrentPage,
 } = postSlice.actions;
 
 export default postSlice.reducer;

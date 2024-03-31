@@ -2,8 +2,8 @@
 import DisplayBlog from "@/components/blog/DisplayBlog";
 import {
   fetchPosts,
+  resetCategoriesCurrentPage,
   updateCategoriesCurrentPage,
-  updatePostsCurrentPage,
 } from "@/redux/posts/postSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,13 +28,22 @@ interface RootState {
     categoriesCurrentPage: number;
     pageSize: number;
     loading: boolean;
+    selectedCategory: string;
+    postFetchTime: any;
+    refreshTime: number;
   };
 }
 
 const CategoriesDisp = ({ params }: Props) => {
-  const { loading, posts, categoriesCurrentPage, pageSize } = useSelector(
-    (state: RootState) => state.posts
-  );
+  const {
+    loading,
+    posts,
+    selectedCategory,
+    categoriesCurrentPage,
+    pageSize,
+    postFetchTime,
+    refreshTime,
+  } = useSelector((state: RootState) => state.posts);
 
   const dispatch = useDispatch();
   const [displayPosts, setDisplayPosts] = useState<Post[]>([]);
@@ -43,6 +52,16 @@ const CategoriesDisp = ({ params }: Props) => {
   useEffect(() => {
     if (posts.length === 0) {
       dispatch(fetchPosts() as any);
+    } else {
+      if (postFetchTime) {
+        const lastFetchedDate = new Date(postFetchTime);
+        const dataTIme = new Date();
+        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
+
+        if (diff > refreshTime) {
+          dispatch(fetchPosts() as any);
+        }
+      }
     }
   }, []);
 
@@ -52,9 +71,11 @@ const CategoriesDisp = ({ params }: Props) => {
   let totalItems = 0;
 
   const updateDisplayPosts = () => {
+    if (params.slug !== selectedCategory) {
+      dispatch(resetCategoriesCurrentPage(params.slug));
+    }
     const catPost = posts.filter((item) => item.categorySlug === params.slug);
     totalItems = catPost.length;
-    console.log("catPost", catPost, totalItems, pageSize);
     setTotalPages(Math.ceil(totalItems / pageSize));
     const startIndex = (categoriesCurrentPage - 1) * pageSize;
     const endIndex = Math.min(startIndex + pageSize, totalItems);
@@ -72,7 +93,7 @@ const CategoriesDisp = ({ params }: Props) => {
           {displayPosts.length > 0 ? (
             <DisplayBlog posts={displayPosts} />
           ) : (
-            <p>
+            <p className='flex overflow-x-auto sm:justify-center py-6'>
               No post found under this category please try diffrent category
             </p>
           )}
