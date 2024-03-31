@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Constants from "../../utils/Constants";
 import LoadingComp from "../LoadingComp";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 interface Post {
   postSlug: string;
   bannerImage?: string;
@@ -12,13 +14,21 @@ interface Props {
   posts: Post[];
 }
 const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
+  const { searchPosts } = useSelector((state: any) => state.posts);
+  const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
   }, []);
   if (!isClient) {
     return <LoadingComp />;
+  }
+  function highlight(name: any) {
+    const startIndex = name.indexOf(searchPosts);
+    const endIndex = startIndex + searchPosts.length;
+    const highlightedSubstring = name.substring(startIndex, endIndex);
+    const highlightedText = `<span class="highlight">${highlightedSubstring}</span>`;
+    return name.slice(0, startIndex) + highlightedText + name.slice(endIndex);
   }
   return (
     <div className='container grid grid-cols-1 md:grid-cols-4 gap-5 m-auto pb-3 pt-5 '>
@@ -54,7 +64,15 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                   WebkitBoxOrient: "vertical",
                 }}>
                 <a href={`${Constants.Navigation.blog}/${post.postSlug}`}>
-                  {post.postName}
+                  {pathname === "/search" ? (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: highlight(post.postName),
+                      }}
+                    />
+                  ) : (
+                    post.postName
+                  )}
                 </a>
               </h5>
 
@@ -70,7 +88,15 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                   WebkitLineClamp: 5,
                   WebkitBoxOrient: "vertical",
                 }}>
-                {post.SEODescription}
+                {pathname === "/search" && post.SEODescription ? (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: highlight(post.SEODescription),
+                    }}
+                  />
+                ) : (
+                  post.SEODescription
+                )}
               </p>
               <a
                 href={`${Constants.Navigation.blog}/${post.postSlug}`}

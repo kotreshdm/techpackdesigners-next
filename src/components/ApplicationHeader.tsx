@@ -9,7 +9,11 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "@/redux/theme/themeSlice";
 import { useRouter } from "next/navigation";
-import { updateSearch } from "@/redux/posts/postSlice";
+import {
+  fetchCategories,
+  fetchPosts,
+  updateSearch,
+} from "@/redux/posts/postSlice";
 const ApplicationHeader = () => {
   const path = usePathname();
   const { theme } = useSelector((state: any) => state.theme);
@@ -18,6 +22,8 @@ const ApplicationHeader = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateSearch(searchTerm));
+    dispatch(fetchCategories() as any);
+    dispatch(fetchPosts() as any);
   }, []);
   const navMenu = [
     {
@@ -69,12 +75,15 @@ const ApplicationHeader = () => {
           <TextInput
             type='text'
             placeholder='Search...'
-            className='hidden lg:inline hover:pointer'
+            className='hidden lg:inline hover:pointer rounded-tr-none rounded-br-none'
             value={searchTerm}
             onChange={(e) => handleChange(e.target.value)}
           />
         </form>
-        <Button onClick={handleSubmit} className='w-12 h-10 mr-3' color='gray'>
+        <Button
+          onClick={handleSubmit}
+          className='rounded-tl-none rounded-bl-none w-12 h-10 mr-3'
+          color='gray'>
           <AiOutlineSearch />
         </Button>
         <Button
