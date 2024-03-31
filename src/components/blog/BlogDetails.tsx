@@ -38,6 +38,14 @@ export default function BlogDetails({ slug }: any) {
   if (loading) {
     return <LoadingComp />;
   }
+  if (!post.postName) {
+    return (
+      <>
+        <CategoriesBanner />
+        <h1 className='flex justify-center p-20'>Requested post not found.</h1>
+      </>
+    );
+  }
   return (
     <>
       <CategoriesBanner />

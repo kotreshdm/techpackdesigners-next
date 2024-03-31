@@ -46,7 +46,9 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                 />
               </a>
             ) : (
-              <div className='bg-gray-800 rounded-t-lg h-60 dark:bg-gray-800 dark:border-gray-700 noImageDiv flex justify-center items-center'>
+              <div
+                style={{ height: "11rem" }}
+                className='bg-gray-800 rounded-t-lg dark:bg-gray-800 dark:border-gray-700 noImageDiv flex justify-center items-center'>
                 <p className='text-white p-5'>{post.postName}</p>
               </div>
             )}
