@@ -50,22 +50,6 @@ const CategoriesDisp = ({ params }: Props) => {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    if (posts.length === 0) {
-      dispatch(fetchPosts() as any);
-    } else {
-      if (postFetchTime) {
-        const lastFetchedDate = new Date(postFetchTime);
-        const dataTIme = new Date();
-        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
-
-        if (diff > refreshTime) {
-          dispatch(fetchPosts() as any);
-        }
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     updateDisplayPosts();
   }, [posts, categoriesCurrentPage, pageSize, params.slug]);
   let totalItems = 0;

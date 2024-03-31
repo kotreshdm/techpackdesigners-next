@@ -3,7 +3,7 @@ import { Banner } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Constants from "../../utils/Constants";
-import { fetchCategories } from "@/redux/posts/postSlice";
+import { fetchCategories, fetchPosts } from "@/redux/posts/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 interface Category {
@@ -14,21 +14,40 @@ interface Category {
 interface RootState {
   posts: {
     categories: Category[];
+    posts: any[];
     categoriesCurrentPage: number;
     pageSize: number;
     loading: boolean;
+    postFetchTime: any;
+    refreshTime: number;
   };
 }
 
 const CategoriesBanner = () => {
-  const { categories } = useSelector((state: RootState) => state.posts);
+  const { categories, posts, postFetchTime, refreshTime } = useSelector(
+    (state: RootState) => state.posts
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(fetchCategories() as any);
     }
   }, []);
+  useEffect(() => {
+    if (posts.length === 0) {
+      dispatch(fetchPosts() as any);
+    } else {
+      if (postFetchTime) {
+        const lastFetchedDate = new Date(postFetchTime);
+        const dataTIme = new Date();
+        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
 
+        if (diff > refreshTime) {
+          dispatch(fetchPosts() as any);
+        }
+      }
+    }
+  }, []);
   return (
     <div>
       <Banner

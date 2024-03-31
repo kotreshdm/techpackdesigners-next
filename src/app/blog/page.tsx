@@ -1,6 +1,6 @@
 "use client";
 import DisplayBlog from "@/components/blog/DisplayBlog";
-import { fetchPosts, updatePostsCurrentPage } from "@/redux/posts/postSlice";
+import { updatePostsCurrentPage } from "@/redux/posts/postSlice";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination } from "flowbite-react";
@@ -25,32 +25,12 @@ interface RootState {
 }
 
 const Blog: React.FC = () => {
-  const {
-    loading,
-    posts,
-    postsCurrentPage,
-    postFetchTime,
-    refreshTime,
-    pageSize,
-  } = useSelector((state: RootState) => state.posts);
+  const { loading, posts, postsCurrentPage, pageSize } = useSelector(
+    (state: RootState) => state.posts
+  );
 
   const dispatch = useDispatch();
   const [displayPosts, setDisplayPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    if (posts.length === 0) {
-      dispatch(fetchPosts() as any);
-    } else {
-      if (postFetchTime) {
-        const lastFetchedDate = new Date(postFetchTime);
-        const dataTIme = new Date();
-        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
-        if (diff > refreshTime) {
-          dispatch(fetchPosts() as any);
-        }
-      }
-    }
-  }, []);
 
   useEffect(() => {
     updateDisplayPosts();

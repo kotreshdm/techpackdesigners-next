@@ -2,11 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DOMPurify from "dompurify";
-import {
-  fetchPosts,
-  getPostBySlug,
-  loadingPost,
-} from "@/redux/posts/postSlice";
+import { getPostBySlug, loadingPost } from "@/redux/posts/postSlice";
 import "./BlogDetails.css";
 import SharePost from "./SharePost";
 import Constants from "@/utils/Constants";
@@ -14,29 +10,13 @@ import DispalyBlog from "./DisplayBlog";
 import CategoriesBanner from "./CategoriesBanner";
 export default function BlogDetails({ slug }: any) {
   const dispatch = useDispatch();
-  const { posts, post, loading, refreshTime, postFetchTime } = useSelector(
-    (state: any) => state.posts
-  );
+  const { posts, post, loading } = useSelector((state: any) => state.posts);
   const [keepReading, setKeepReading] = useState<any[]>([]);
   useEffect(() => {
     dispatch(loadingPost());
     dispatch(getPostBySlug(slug));
   }, [dispatch, slug, posts]);
 
-  useEffect(() => {
-    if (posts.length === 0) {
-      dispatch(fetchPosts() as any);
-    } else {
-      if (postFetchTime) {
-        const lastFetchedDate = new Date(postFetchTime);
-        const dataTIme = new Date();
-        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
-        if (diff > refreshTime) {
-          dispatch(fetchPosts() as any);
-        }
-      }
-    }
-  }, []);
   useEffect(() => {
     if (slug && posts.length > 0) {
       let filteredPosts = posts.filter(
