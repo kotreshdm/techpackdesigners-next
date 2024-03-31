@@ -30,6 +30,15 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
     const highlightedText = `<span class="highlight">${highlightedSubstring}</span>`;
     return name.slice(0, startIndex) + highlightedText + name.slice(endIndex);
   }
+  function highlightDesc(name: any) {
+    console.log(name);
+
+    const startIndex = name.indexOf(searchPosts);
+    const endIndex = startIndex + searchPosts.length;
+    const highlightedSubstring = name.substring(startIndex, endIndex);
+    const highlightedText = `<span class="highlight">${highlightedSubstring}</span>`;
+    return name.slice(0, startIndex) + highlightedText + name.slice(endIndex);
+  }
   return (
     <div className='container grid grid-cols-1 md:grid-cols-4 gap-5 m-auto pb-3 pt-5 '>
       {posts &&
@@ -93,7 +102,7 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                 {pathname === "/search" && post.SEODescription ? (
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: highlight(post.SEODescription),
+                      __html: highlightDesc(post.SEODescription),
                     }}
                   />
                 ) : (
