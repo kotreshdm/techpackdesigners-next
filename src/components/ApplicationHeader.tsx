@@ -34,6 +34,18 @@ const ApplicationHeader = () => {
       label: "Blog",
       url: Constants.Navigation.blog,
     },
+    {
+      label: "About",
+      url: Constants.Navigation.about,
+    },
+    {
+      label: "Services",
+      url: Constants.Navigation.services,
+    },
+    {
+      label: "Techpack",
+      url: Constants.Navigation.techPack,
+    },
   ];
   const handleChange = (v: any) => {
     setSearchTerm(v);

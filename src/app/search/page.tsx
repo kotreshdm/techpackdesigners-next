@@ -34,12 +34,16 @@ export default function SearchPage() {
   }, [posts, searchPosts]);
 
   const updateSearchPosts = () => {
+    let searchKey = searchPosts.toLowerCase();
+    console.log(searchKey);
+
     const filteredPosts = posts.filter(
       (item) =>
-        item.postName.toLowerCase().includes(searchPosts.toLowerCase()) ||
+        item.postName.toLowerCase().includes(searchKey) ||
         (item.SEODescription &&
-          item.SEODescription.toLowerCase().includes(searchPosts.toLowerCase()))
+          item.SEODescription.toLowerCase().includes(searchKey))
     );
+
     setDisplayPosts(filteredPosts);
   };
 

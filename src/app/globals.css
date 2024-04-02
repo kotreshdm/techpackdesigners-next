@@ -15,7 +15,6 @@
 body {
   color: rgb(var(--foreground-rgb));
   margin: 0;
-  /* font-family: "Dancing Script", "Helvetica Neue", cursive; */
   font-family: "DM Sans", sans-serif;
 }
 
@@ -40,4 +39,71 @@ body {
 
 .highlight {
   background-color: yellow;
+}
+
+/* All Page css */
+.pages {
+  padding-top: 10px;
+}
+
+.pages .main-heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+}
+.pages .sub-heading {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+.pages .content {
+  text-align: justify;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+.pages .team .sub-heading {
+  text-align: center;
+  padding-bottom: 15px;
+}
+.pages .team .team-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+.pages .team .team-title {
+  font-size: 17px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.pages .team .content {
+  font-size: 16px;
+}
+.pages .services .heading {
+  font-size: 24px;
+  text-align: center;
+}
+.pages .services .content {
+  font-size: 16px;
+  line-height: 22px;
+  padding: 5px 0;
+}
+.pages.techpack .services .serdiv {
+  border: 1px solid #037ac5;
+}
+.pages.techpack .services .heading {
+  background-color: #037ac5;
+  color: #fff;
+}
+/* .pages.techpack .services .content {
+
+} */
+.pages.techpack .services .card-image {
+  margin: auto;
+}
+.pages.techpack .services a {
+  color: #037ac5;
 }

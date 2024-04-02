@@ -23,22 +23,17 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
   if (!isClient) {
     return <LoadingComp />;
   }
-  function highlight(name: any) {
-    const startIndex = name.indexOf(searchPosts);
-    const endIndex = startIndex + searchPosts.length;
-    const highlightedSubstring = name.substring(startIndex, endIndex);
-    const highlightedText = `<span class="highlight">${highlightedSubstring}</span>`;
-    return name.slice(0, startIndex) + highlightedText + name.slice(endIndex);
-  }
-  function highlightDesc(name: any) {
-    console.log(name);
 
-    const startIndex = name.indexOf(searchPosts);
+  const highlightDesc = (name: any) => {
+    if (!searchPosts) return name;
+    const searchTerm = searchPosts.toLowerCase();
+    const startIndex = name.toLowerCase().indexOf(searchTerm);
+    if (startIndex === -1) return name;
     const endIndex = startIndex + searchPosts.length;
     const highlightedSubstring = name.substring(startIndex, endIndex);
     const highlightedText = `<span class="highlight">${highlightedSubstring}</span>`;
     return name.slice(0, startIndex) + highlightedText + name.slice(endIndex);
-  }
+  };
   return (
     <div className='container grid grid-cols-1 md:grid-cols-4 gap-5 m-auto pb-3 pt-5 '>
       {posts &&
@@ -78,7 +73,7 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                   {pathname === "/search" ? (
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: highlight(post.postName),
+                        __html: highlightDesc(post.postName),
                       }}
                     />
                   ) : (
@@ -86,7 +81,6 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                   )}
                 </a>
               </h5>
-
               <p
                 className='mb-3 text-gray-700 dark:text-gray-400'
                 style={{

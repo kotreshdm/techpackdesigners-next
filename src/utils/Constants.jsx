@@ -4,7 +4,7 @@ const Constants = {
     home: "/",
     about: "/about",
     services: "/services",
-    techPack: "/tech-pack",
+    techPack: "/techpack",
     portfolio: "/portfolio",
     manufacturing: "/manufacturing",
     blog: "/blog",
