@@ -4,6 +4,7 @@ import axios from "axios";
 
 interface PostState {
   posts: any[];
+  portfilio: any[];
   postFetchTime: any;
   categories: any[];
   post: any;
@@ -20,6 +21,7 @@ interface PostState {
 
 const initialState: PostState = {
   posts: [],
+  portfilio: [],
   postFetchTime: null,
   categories: [],
   post: {},
@@ -45,6 +47,13 @@ export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async () => {
     const response = await axios.get(Constants.apiRoutes.getAllCategories);
+    return response.data;
+  }
+);
+export const fetchPorifilio = createAsyncThunk(
+  "portfilio/fetchPrrifilio",
+  async () => {
+    const response = await axios.get(Constants.apiRoutes.getAllPortfilio);
     return response.data;
   }
 );
@@ -123,6 +132,9 @@ const postSlice = createSlice({
         state.loading = false;
         state.categories = [];
         state.error = action.error.message || "Something went wrong";
+      })
+      .addCase(fetchPorifilio.fulfilled, (state, action) => {
+        state.portfilio = action.payload;
       });
   },
 });

@@ -29,6 +29,7 @@ const Constants = {
   apiRoutes: {
     getAllPosts: "http://localhost:3000/api/get-posts",
     getAllCategories: "http://localhost:3000/api/get-categories",
+    getAllPortfilio: "http://localhost:3000/api/get-portfilio",
     getpostOnslug: "http://localhost:3000/api/posts",
   },
   SEO: {

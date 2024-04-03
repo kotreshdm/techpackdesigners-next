@@ -11,6 +11,7 @@ import { toggleTheme } from "@/redux/theme/themeSlice";
 import { useRouter } from "next/navigation";
 import {
   fetchCategories,
+  fetchPorifilio,
   fetchPosts,
   updateSearch,
 } from "@/redux/posts/postSlice";
@@ -24,6 +25,7 @@ const ApplicationHeader = () => {
     dispatch(updateSearch(searchTerm));
     dispatch(fetchCategories() as any);
     dispatch(fetchPosts() as any);
+    dispatch(fetchPorifilio() as any);
   }, []);
   const navMenu = [
     {
@@ -45,6 +47,10 @@ const ApplicationHeader = () => {
     {
       label: "Techpack",
       url: Constants.Navigation.techPack,
+    },
+    {
+      label: "Portfolio",
+      url: Constants.Navigation.portfolio,
     },
   ];
   const handleChange = (v: any) => {

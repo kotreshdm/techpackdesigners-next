@@ -1,6 +1,5 @@
 import { Button } from "flowbite-react";
 import Link from "next/link";
-import logo from "../../assets/images/logo.png";
 import techpack from "../../assets/images/techpack/techpack.png";
 import techpackdesigner from "../../assets/images/techpack/techpackdesigner.png";
 import techpackdesigner2 from "../../assets/images/techpack/techpackdesigner2.png";
