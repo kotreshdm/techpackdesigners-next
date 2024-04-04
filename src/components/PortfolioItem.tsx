@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { FcSearch } from "react-icons/fc";
 import { FiZoomIn } from "react-icons/fi";
 const PortfolioItem = ({ src, alt, onClick }: any) => {
   const [isHovered, setIsHovered] = useState(false);

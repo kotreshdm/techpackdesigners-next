@@ -3,6 +3,7 @@ import Link from "next/link";
 import techpack from "../../../assets/images/techpack/techpack.png";
 import techpackdesigner from "../../../assets/images/techpack/techpackdesigner.png";
 import techpackdesigner2 from "../../../assets/images/techpack/techpackdesigner2.png";
+import Image from "next/image";
 export default function ServicesPage() {
   return (
     <div className='flex justify-center flex-wrap pages techpack'>
@@ -36,7 +37,7 @@ export default function ServicesPage() {
             <div className='bg-white dark:bg-gray-800 rounded-b serdiv'>
               <h2 className='heading'>Apparel Design</h2>
               <div className='p-4'>
-                <img src={techpack.src} alt='techpack' className='card-image' />
+                <Image src={techpack} alt='techpack' className='card-image' />
                 <h5 className='small-heading'>Tech Pack Design Requirement</h5>
                 <p className='content'>
                   As an apparel brand or a creative designer, your thoughts and
@@ -68,11 +69,12 @@ export default function ServicesPage() {
             <div className='bg-white dark:bg-gray-800 rounded-b serdiv'>
               <h2 className='heading'>Clothing Tech Packs</h2>
               <div className='p-4'>
-                <img
-                  src={techpackdesigner.src}
+                <Image
+                  src={techpackdesigner}
                   alt='techpackdesigner'
                   className='card-image'
                 />
+
                 <h5 className='small-heading'>Why You Need a Tech Pack</h5>
                 <p className='content'>
                   Tech packs significantly reduce the time and effort required
@@ -113,8 +115,8 @@ export default function ServicesPage() {
             <div className='bg-white dark:bg-gray-800 rounded-b serdiv'>
               <h2 className='heading  text-center'>Tech Pack Design Process</h2>
               <div className='p-4'>
-                <img
-                  src={techpackdesigner2.src}
+                <Image
+                  src={techpackdesigner2}
                   alt='techpackdesigner2'
                   className='card-image'
                 />
@@ -167,18 +169,18 @@ export default function ServicesPage() {
           <h2 className='sub-heading pb-4'>Samples Tech Pack Designs</h2>
           <div className='grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6'>
             <div className='bg-white dark:bg-gray-800 rounded-b'>
-              <img src={techpack.src} alt='techpack' className='card-image' />
+              <Image src={techpack} alt='techpack' className='card-image' />
             </div>
             <div className='bg-white dark:bg-gray-800 rounded-b '>
-              <img
-                src={techpackdesigner.src}
+              <Image
+                src={techpackdesigner}
                 alt='techpackdesigner'
                 className='card-image'
               />
             </div>
             <div className='bg-white dark:bg-gray-800 rounded-b '>
-              <img
-                src={techpackdesigner2.src}
+              <Image
+                src={techpackdesigner2}
                 alt='techpackdesigner2'
                 className='card-image'
               />

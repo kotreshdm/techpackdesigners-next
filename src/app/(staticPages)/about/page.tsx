@@ -1,3 +1,4 @@
+import Image from "next/image";
 import logo from "../../../assets/images/logo.png";
 export default function AboutPage() {
   return (
@@ -111,7 +112,7 @@ export default function AboutPage() {
         <div className='mb-8'>
           <h2 className='sub-heading'>Our Partner Company:</h2>
           <a href='https://www.scriptographics.com/' target='_blank'>
-            <img src={logo.src} alt='ScriptoGraphics' />
+            <Image src={logo} alt='ScriptoGraphics' />
           </a>
           <p className='content'>
             Scripto Graphics a newly formed technology company with a strong
