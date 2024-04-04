@@ -35,7 +35,6 @@ export default function SearchPage() {
 
   const updateSearchPosts = () => {
     let searchKey = searchPosts.toLowerCase();
-    console.log(searchKey);
 
     const filteredPosts = posts.filter(
       (item) =>

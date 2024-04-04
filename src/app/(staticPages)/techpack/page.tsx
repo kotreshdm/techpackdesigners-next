@@ -1,8 +1,8 @@
 import { Button } from "flowbite-react";
 import Link from "next/link";
-import techpack from "../../assets/images/techpack/techpack.png";
-import techpackdesigner from "../../assets/images/techpack/techpackdesigner.png";
-import techpackdesigner2 from "../../assets/images/techpack/techpackdesigner2.png";
+import techpack from "../../../assets/images/techpack/techpack.png";
+import techpackdesigner from "../../../assets/images/techpack/techpackdesigner.png";
+import techpackdesigner2 from "../../../assets/images/techpack/techpackdesigner2.png";
 export default function ServicesPage() {
   return (
     <div className='flex justify-center flex-wrap pages techpack'>

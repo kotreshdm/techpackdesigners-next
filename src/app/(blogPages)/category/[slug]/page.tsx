@@ -62,6 +62,7 @@ const CategoriesDisp = ({ params }: Props) => {
     const startIndex = (categoriesCurrentPage - 1) * categoriesPageSize;
     const endIndex = Math.min(startIndex + categoriesPageSize, totalItems);
     const filteredPosts = catPost.slice(startIndex, endIndex);
+
     setDisplayPosts(filteredPosts);
   };
 

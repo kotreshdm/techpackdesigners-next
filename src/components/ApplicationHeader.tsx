@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Navbar, TextInput, Button } from "flowbite-react";
+import { Navbar, TextInput, Button, Dropdown } from "flowbite-react";
 import Constants from "../utils/Constants";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -82,10 +82,18 @@ const ApplicationHeader = () => {
               as={"div"}
               key={menuItem.url}>
               <Link href={menuItem.url} passHref>
-                <>{menuItem.label}</>
+                {menuItem.label}
               </Link>
             </Navbar.Link>
           ))}
+          <Dropdown arrowIcon={true} inline label={"Manufacturing"}>
+            <Link href={"/apparel-production"}>
+              <Dropdown.Item>Production</Dropdown.Item>
+            </Link>
+            <Link href={"/price"}>
+              <Dropdown.Item>Package & Price</Dropdown.Item>
+            </Link>
+          </Dropdown>
         </Navbar.Collapse>
       </div>
       <div className='flex gap-0 md:order-4'>
