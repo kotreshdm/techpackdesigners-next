@@ -62,7 +62,7 @@ export default function ServicesPage() {
                   factory ready tech packs.
                 </p>
                 <Link href='/contact'>
-                  <Button>Contact Us</Button>
+                  <Button >Contact Us</Button>
                 </Link>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function ServicesPage() {
                   garment manufacturing units insist on having well-constructed
                   apparel tech packs to maximize productivity.
                 </p>
-                <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400'>
+                <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
                   Tech Pack’s construction detailing:
                   <li>
                     Integrates all information that a manufacturer needs to
@@ -122,7 +122,7 @@ export default function ServicesPage() {
                 />
                 <h5 className='small-heading'>Getting Started</h5>
 
-                <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400'>
+                <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
                   TWe need the entailed information from you to get started.
                   Please send us your requirement with responses to the below
                   stated queries:
@@ -191,7 +191,7 @@ export default function ServicesPage() {
           <h2 className='sub-heading text-center'>
             What Constitutes an Clothing Tech Pack
           </h2>
-          <ul className='space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400'>
+          <ul className='space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
             <li>
               Rendered Illustration - Flat Sketch ( Front View - Back View )
             </li>
@@ -220,7 +220,7 @@ export default function ServicesPage() {
         </div>
         <div className='pb-4'>
           <h2 className='sub-heading text-center'>Tech Pack Design Process</h2>
-          <ul className='space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400'>
+          <ul className='space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
             <li>
               You may send Sketches / Inspiration picture of your styles to
               create technical apparel design (Tech Pack and Spec Sheet).

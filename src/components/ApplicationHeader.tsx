@@ -93,6 +93,12 @@ const ApplicationHeader = () => {
             <Link href={"/price"}>
               <Dropdown.Item>Package & Price</Dropdown.Item>
             </Link>
+            <Link href={"/techpack-quote"}>
+              <Dropdown.Item>TechPack Quote</Dropdown.Item>
+            </Link>
+            <Link href={"/career"}>
+              <Dropdown.Item>Career</Dropdown.Item>
+            </Link>
           </Dropdown>
         </Navbar.Collapse>
       </div>

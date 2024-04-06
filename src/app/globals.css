@@ -24,6 +24,19 @@ body {
   }
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  padding-bottom: 10px;
+}
+li {
+  padding-left: 20px;
+  text-indent: -20px;
+}
+li::first-line {
+  text-indent: 0;
+}
+
 .catList {
   background-color: #145260;
 }
@@ -43,13 +56,24 @@ body {
 
 /* All Page css */
 .pages {
-  padding-top: 10px;
+  padding-top: 20px;
 }
-
+.pages a {
+  color: rgb(16, 16, 109);
+}
+.dark .pages a {
+  color: rgb(155, 155, 235);
+}
 .pages .main-heading {
   text-align: center;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 28px;
+  line-height: 36px;
+}
+.pages .main-heading.middle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
   line-height: 36px;
 }
 .pages .sub-heading {
@@ -59,12 +83,22 @@ body {
   line-height: 28px;
   margin-bottom: 10px;
 }
+.pages .sub-heading3 {
+  font-weight: 500;
+  font-size: 17px;
+}
 .pages .content {
   text-align: justify;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   margin-bottom: 10px;
+}
+.pages .content.blod {
+  font-weight: 500;
+}
+.pages .content.note {
+  font-size: 14px;
 }
 .pages .team .sub-heading {
   text-align: center;
@@ -83,11 +117,11 @@ body {
   font-size: 16px;
 }
 .pages .services .heading {
-  font-size: 24px;
+  font-size: 21px;
   text-align: center;
 }
 .pages .services .content {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   padding: 5px 0;
 }
@@ -98,12 +132,128 @@ body {
   background-color: #037ac5;
   color: #fff;
 }
-/* .pages.techpack .services .content {
-
-} */
-.pages.techpack .services .card-image {
+.pages .production {
+  padding-top: 20px;
+}
+.pages .production .serdiv {
+  border: 1px solid #037ac5;
+}
+.pages .production .heading {
+  background-color: #037ac5;
+  color: #fff;
+  font-size: 20px;
+  text-align: left;
+  padding: 5px 10px;
+}
+.pages .production .card-image {
   margin: auto;
 }
 .pages.techpack .services a {
   color: #037ac5;
+}
+/* Pricing table CCSS */
+.pricing-table .box {
+  padding: 0px;
+}
+
+.pricing-table .box .heading {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 32px;
+  padding: 35px 35px 0;
+}
+.pricing-table .box .cart-sec {
+  padding: 0 35px;
+}
+.pricing-table .box .price {
+  font-weight: 800;
+  color: #000;
+  font-size: 36px;
+}
+.pricing-table .box span {
+  min-width: 30px;
+}
+.pricing-table .box li svg {
+  display: inline;
+  margin-right: 10px;
+}
+.pricing-table li.non-active svg {
+  visibility: hidden;
+  margin-right: 10px;
+}
+.pricing-table .box .button-section {
+  color: #fff;
+}
+.pricing-table .box .button-section {
+  padding: 30px;
+}
+.pricing-table .box .button-section .btn {
+  margin: auto;
+  font-weight: 700;
+  border-radius: 0;
+  padding: 5px 15px;
+  min-width: 300px;
+}
+/* Box 1Related css */
+.pricing-table .box1 {
+  background-color: #c108410f;
+  color: #c10841;
+}
+.pricing-table .box1 .icon-sction {
+  border: 1px solid #c10841;
+}
+.pricing-table .box1 li {
+  border-top: 1px solid #c108411a;
+  padding: 15px 35px;
+}
+.pricing-table .box1 .non-active {
+  color: #c1084166;
+}
+.pricing-table .box1 .button-section {
+  border-top: 1px solid #c108411a;
+}
+.pricing-table .box1 .button-section .btn {
+  background-color: #c10841;
+}
+/* Box 2 related css */
+.pricing-table .box2 {
+  background-color: #f894060f;
+  color: #f89406;
+}
+.pricing-table .box2 .icon-sction {
+  border: 1px solid #f89406;
+}
+.pricing-table .box2 li {
+  border-top: 1px solid #f894060f;
+  padding: 15px 35px;
+}
+.pricing-table .box2 .non-active {
+  color: #f894060f;
+}
+.pricing-table .box2 .button-section {
+  border-top: 1px solid #f894060f;
+}
+.pricing-table .box2 .button-section .btn {
+  background-color: #f89406;
+}
+/* Box 3 related CSS  */
+.pricing-table .box3 {
+  background-color: #738d000f;
+  color: #738d00;
+}
+.pricing-table .box3 .icon-sction {
+  border: 1px solid #738d00;
+}
+.pricing-table .box3 li {
+  border-top: 1px solid #738d000f;
+  padding: 15px 35px;
+}
+.pricing-table .box3 .non-active {
+  color: #738d000f;
+}
+.pricing-table .box3 .button-section {
+  border-top: 1px solid #738d000f;
+}
+.pricing-table .box3 .button-section .btn {
+  background-color: #738d00;
 }
