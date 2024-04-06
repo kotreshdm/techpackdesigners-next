@@ -185,7 +185,7 @@ li::first-line {
   color: #fff;
 }
 .pricing-table .box .button-section {
-  padding: 30px;
+  padding: 50px 30px;
 }
 .pricing-table .box .button-section .btn {
   margin: auto;
@@ -211,7 +211,13 @@ li::first-line {
 }
 .pricing-table .box1 .button-section {
   border-top: 1px solid #c108411a;
+  background: #c108411a;
 }
+.pricing-table .box1 .button-section .btn:hover {
+  background: #c10841cc;
+  border-color: #c10841cc;
+}
+
 .pricing-table .box1 .button-section .btn {
   background-color: #c10841;
 }
@@ -232,6 +238,11 @@ li::first-line {
 }
 .pricing-table .box2 .button-section {
   border-top: 1px solid #f894060f;
+  background: #f8940666;
+}
+.pricing-table .box2 .button-section .btn:hover {
+  background: #faa937;
+  border-color: #faa937;
 }
 .pricing-table .box2 .button-section .btn {
   background-color: #f89406;
@@ -253,6 +264,11 @@ li::first-line {
 }
 .pricing-table .box3 .button-section {
   border-top: 1px solid #738d000f;
+  background: #738d0066;
+}
+.pricing-table .box3 .button-section .btn:hover {
+  background: #9dc000;
+  border-color: #9dc000;
 }
 .pricing-table .box3 .button-section .btn {
   background-color: #738d00;
