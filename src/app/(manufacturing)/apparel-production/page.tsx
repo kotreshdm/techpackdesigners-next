@@ -148,15 +148,15 @@ export default function ApparalProcuctionPage() {
                   className='card-image'
                 />
                 <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
-                  <li>Men’s and Ladies T-Shirts</li>
-                  <li>Men's and Ladies Shirts – Casual &amp; Formal</li>
+                  <li>Men&apos;s and Ladies T-Shirts</li>
+                  <li>Men&apos;s and Ladies Shirts - Casual &amp; Formal</li>
                   <li>
-                    Men's Ladies – Bottom, Denims, Trousers (Casual &amp;
+                    Men&apos;s Ladies - Bottom, Denims, Trousers (Casual &amp;
                     Formal)
                   </li>
-                  <li>Kids Clothing – Boys Shirts, Trousers, Denims, Shorts</li>
+                  <li>Kids Clothing - Boys Shirts, Trousers, Denims, Shorts</li>
                   <li>
-                    Kids – Girls Shirts, Frocks, Pants, Skirts, Shorts &amp;
+                    Kids - Girls Shirts, Frocks, Pants, Skirts, Shorts &amp;
                     Denims
                   </li>
                   <li>Strong in sourcing Fabrics &amp; Trims Sourcing</li>
@@ -176,19 +176,19 @@ export default function ApparalProcuctionPage() {
                 />
 
                 <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
-                  <li>30 – Single needle Machines (JUKI Made)</li>
-                  <li>05 – Over Lock Machines ( JUKI &amp; Siruba Made)</li>
+                  <li>30 - Single needle Machines (JUKI Made)</li>
+                  <li>05 - Over Lock Machines ( JUKI &amp; Siruba Made)</li>
                   <li>
                     05 - Flat Lock Machine for T-Shirt Production (Juki Made)
                   </li>
                   <li>
-                    02 – Boiler Iron and Finishing Table for Garment Finishing
+                    02 - Boiler Iron and Finishing Table for Garment Finishing
                   </li>
                   <li>
-                    Kids – Girls Shirts, Frocks, Pants, Skirts, Shorts &amp;
+                    Kids - Girls Shirts, Frocks, Pants, Skirts, Shorts &amp;
                     Denims
                   </li>
-                  <li>02 – Layer Cutting Machine</li>
+                  <li>02 - Layer Cutting Machine</li>
                 </ul>
                 <Link href='/contact'>
                   <Button>Drop A Mail</Button>
@@ -205,8 +205,8 @@ export default function ApparalProcuctionPage() {
                 />
 
                 <ul className='max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
-                  <li>T-Shirts( Plain )– 200 PCS/Color/Style</li>
-                  <li>T-Shirts( Striper ) – 500 PCS/Color/Style</li>
+                  <li>T-Shirts( Plain )- 200 PCS/Color/Style</li>
+                  <li>T-Shirts( Striper ) - 500 PCS/Color/Style</li>
                   <li>Woven Shirt/Tops(Plain)- 300 PCS/Color/Style</li>
                   <li>
                     Woven Shirts Floral/Strips and Checks - 1000 PCS/Color/Style
