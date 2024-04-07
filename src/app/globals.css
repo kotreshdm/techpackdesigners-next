@@ -283,3 +283,32 @@ li::first-line {
 .pages.contact-page .content {
   margin-bottom: 0px;
 }
+
+.dark .pricing-table .box .price {
+  color: #fff;
+}
+.dark .pricing-table .box {
+  color: #fff;
+}
+.dark .pricing-table .box1 {
+  background-color: #c108415e;
+}
+.dark .pricing-table .box2 {
+  background-color: #f8940663;
+}
+.dark .pricing-table .box3 {
+  background-color: #738d007a;
+}
+
+.dark .pricing-table .box .non-active {
+  color: #ffffffd4;
+}
+.dark .pricing-table .box1 .icon-sction {
+  color: #c10841;
+}
+.dark .pricing-table .box2 .icon-sction {
+  color: #f89406;
+}
+.dark .pricing-table .box3 .icon-sction {
+  color: #738d00;
+}
