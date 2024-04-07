@@ -37,6 +37,14 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      <div className='py-5'>
+        <iframe
+          src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7778.9223866526345!2d77.646107!3d12.878039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16d7782d8463%3A0x45845542b520c1e9!2sTech%20Pack%20Designer%20-%20Urban%20Purple!5e0!3m2!1sen!2sus!4v1712470052807!5m2!1sen!2sus'
+          width='1220'
+          height='400'
+          style={{ border: "0" }}
+          loading='lazy'></iframe>
+      </div>
     </div>
   );
 }

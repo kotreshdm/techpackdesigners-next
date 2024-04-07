@@ -15,6 +15,8 @@ import {
   fetchPosts,
   updateSearch,
 } from "@/redux/posts/postSlice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ApplicationHeader = () => {
   const path = usePathname();
   const { theme } = useSelector((state: any) => state.theme);
@@ -67,72 +69,81 @@ const ApplicationHeader = () => {
     }
   };
   return (
-    <Navbar className='border-b-2 sticky top-0 z-30'>
-      <div className='flex'>
-        <Link href='/' passHref>
-          <p className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
-            Blog
-          </p>
-        </Link>
+    <>
+      <ToastContainer
+        autoClose={6000}
+        position='top-right'
+        className='toast-container'
+        toastClassName='dark-toast'
+      />
 
-        <Navbar.Collapse className='mt-2 ml-10'>
-          {navMenu.map((menuItem) => (
-            <Navbar.Link
-              active={path === menuItem.url}
-              as={"div"}
-              key={menuItem.url}>
-              <Link href={menuItem.url} passHref>
-                {menuItem.label}
+      <Navbar className='border-b-2 sticky top-0 z-30'>
+        <div className='flex'>
+          <Link href='/' passHref>
+            <p className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
+              Blog
+            </p>
+          </Link>
+
+          <Navbar.Collapse className='mt-2 ml-10'>
+            {navMenu.map((menuItem) => (
+              <Navbar.Link
+                active={path === menuItem.url}
+                as={"div"}
+                key={menuItem.url}>
+                <Link href={menuItem.url} passHref>
+                  {menuItem.label}
+                </Link>
+              </Navbar.Link>
+            ))}
+            <Dropdown arrowIcon={true} inline label={"Manufacturing"}>
+              <Link href={"/apparel-production"}>
+                <Dropdown.Item>Production</Dropdown.Item>
+              </Link>
+              <Link href={"/price"}>
+                <Dropdown.Item>Package & Price</Dropdown.Item>
+              </Link>
+              <Link href={"/techpack-quote"}>
+                <Dropdown.Item>TechPack Quote</Dropdown.Item>
+              </Link>
+              <Link href={"/career"}>
+                <Dropdown.Item>Career</Dropdown.Item>
+              </Link>
+            </Dropdown>
+            <Navbar.Link active={path === "/contact"} as={"div"}>
+              <Link href='/contact' passHref>
+                Contact
               </Link>
             </Navbar.Link>
-          ))}
-          <Dropdown arrowIcon={true} inline label={"Manufacturing"}>
-            <Link href={"/apparel-production"}>
-              <Dropdown.Item>Production</Dropdown.Item>
-            </Link>
-            <Link href={"/price"}>
-              <Dropdown.Item>Package & Price</Dropdown.Item>
-            </Link>
-            <Link href={"/techpack-quote"}>
-              <Dropdown.Item>TechPack Quote</Dropdown.Item>
-            </Link>
-            <Link href={"/career"}>
-              <Dropdown.Item>Career</Dropdown.Item>
-            </Link>
-          </Dropdown>
-          <Navbar.Link active={path === "/contact"} as={"div"}>
-            <Link href='/contact' passHref>
-              Contact
-            </Link>
-          </Navbar.Link>
-        </Navbar.Collapse>
-      </div>
-      <div className='flex gap-0 md:order-4'>
-        <form onSubmit={handleSubmit}>
-          <TextInput
-            type='text'
-            placeholder='Search...'
-            className='hidden lg:inline hover:pointer rounded-tr-none rounded-br-none'
-            value={searchTerm}
-            onChange={(e) => handleChange(e.target.value)}
-          />
-        </form>
-        <Button
-          onClick={handleSubmit}
-          className='rounded-tl-none rounded-bl-none w-12 h-10 mr-3'
-          color='gray'>
-          <AiOutlineSearch />
-        </Button>
-        <Button
-          className='w-12 h-10 hidden sm:inline'
-          color='gray'
-          pill
-          onClick={() => dispatch(toggleTheme())}>
-          {theme === "dark" ? <FaSun /> : <FaMoon />}
-        </Button>
-        <Navbar.Toggle />
-      </div>
-    </Navbar>
+          </Navbar.Collapse>
+        </div>
+        <div className='flex gap-0 md:order-4'>
+          <form onSubmit={handleSubmit}>
+            <TextInput
+              type='text'
+              placeholder='Search...'
+              className='hidden lg:inline hover:pointer rounded-tr-none rounded-br-none'
+              value={searchTerm}
+              onChange={(e) => handleChange(e.target.value)}
+            />
+          </form>
+          <Button
+            onClick={handleSubmit}
+            className='rounded-tl-none rounded-bl-none w-12 h-10 mr-3'
+            color='gray'>
+            <AiOutlineSearch />
+          </Button>
+          <Button
+            className='w-12 h-10 hidden sm:inline'
+            color='gray'
+            pill
+            onClick={() => dispatch(toggleTheme())}>
+            {theme === "dark" ? <FaSun /> : <FaMoon />}
+          </Button>
+          <Navbar.Toggle />
+        </div>
+      </Navbar>
+    </>
   );
 };
 

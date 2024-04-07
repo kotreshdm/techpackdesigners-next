@@ -2,11 +2,10 @@
 import { Alert, Button } from "flowbite-react";
 import React, { useState } from "react";
 import { FloatingLabel } from "flowbite-react";
-import { toast } from "react-toastify";
+const initialState = { name: "", email: "" };
 const ContactForm = () => {
-  const [formData, setFormData] = useState({});
-  const [errors, setErrors] = useState({ name: "kk" });
-  const [publishError, setPublishError] = useState("");
+  const [formData, setFormData] = useState(initialState);
+  const [publishSuccess, setPublishSuccess] = useState("");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -17,11 +16,13 @@ const ContactForm = () => {
           "content-type": "application/json",
         },
       });
-      console.log(res);
       if (res.ok) {
-        //toast.success("Contact created succesfullys!");
+        setFormData(initialState);
+        setPublishSuccess(
+          "Your Feedback is Successfully Sent We will Getback to You As Soon As Possible!"
+        );
       } else {
-        // toast.error("Oops! Something is wrong.");
+        setPublishSuccess("Oops! Something is wrong.");
       }
     } catch (error) {
       console.log(error);
@@ -36,32 +37,27 @@ const ContactForm = () => {
             variant='outlined'
             label='Name:'
             id='name'
-            color={errors.name ? "error" : "success"}
             required
-            onChange={(e) => {
-              setFormData({ ...formData, name: e.target.value });
-              setErrors({ ...errors, name: "" });
-            }}
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
           <FloatingLabel
             variant='outlined'
             label='Email:'
             id='email'
             type='email'
-            color={true ? "success" : "error"}
             required
+            value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
           />
         </div>
 
-        <Button type='submit' gradientDuoTone='purpleToPink'>
-          Publish
-        </Button>
-        {publishError && (
-          <Alert className='mt-5' color='failure'>
-            {publishError}
+        <Button type='submit'>Submit</Button>
+        {publishSuccess && (
+          <Alert className='mt-5 p-5' color='success'>
+            {publishSuccess}
           </Alert>
         )}
       </form>
