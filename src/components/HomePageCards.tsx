@@ -191,7 +191,7 @@ export default function HomePageCards() {
             Complete Clothing Design & Clothing Manufacturing Solution
           </h1>
           <h5 className='sub-heading mb-4'>
-            We become What We Think About Most of the Time, and That's the
+            We become What We Think About Most of the Time, and That&apos;s the
             Strangest Secret.
           </h5>
           <ul className='space-y-1 text-gray-500 list-disc list-inside dark:text-gray-300'>
