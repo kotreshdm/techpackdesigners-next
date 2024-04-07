@@ -312,3 +312,46 @@ li::first-line {
 .dark .pricing-table .box3 .icon-sction {
   color: #738d00;
 }
+
+/* Home page */
+.home-page .serdiv .heading {
+  text-align: left;
+  padding: 10px;
+}
+.home-page .serdiv img {
+  margin: auto;
+  margin-bottom: 5px;
+}
+.five-items {
+  padding: 10px 0;
+}
+.five-items .item {
+  padding: 10px;
+  color: #fff;
+}
+.five-items .item h1 {
+  text-align: center;
+  font-weight: 900;
+  font-size: 28px;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.five-items .item p {
+  padding: 10px;
+}
+.five-items .item1 {
+  background-color: #f89406;
+}
+.five-items .item2 {
+  background-color: #777;
+}
+.five-items .item3 {
+  background-color: #0098ca;
+}
+.five-items .item4 {
+  background-color: #738d00;
+}
+.five-items .item5 {
+  background-color: #c10841;
+}

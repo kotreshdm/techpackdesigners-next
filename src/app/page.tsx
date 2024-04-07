@@ -1,3 +1,11 @@
+import HomePageCards from "@/components/HomePageCards";
+import HomePageCarousel from "@/components/HomePageCarousel";
+
 export default function Home() {
-  return <h1 className='flex justify-center'>Home Page</h1>;
+  return (
+    <h1 className=''>
+      <HomePageCarousel />
+      <HomePageCards />
+    </h1>
+  );
 }
