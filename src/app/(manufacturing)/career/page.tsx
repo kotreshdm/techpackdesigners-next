@@ -123,8 +123,8 @@ export default function CareerPage() {
           ranging from Man&apos;s apparel, Women&apos;s Apparel, Active Wear,
           Lingeries and other Outerwear Garments. We are in business for over 12
           years, and developed a distinct image and have become one of the
-          world's most recognizable and iconic Apparel Design Studio and Garment
-          Manufacturer.
+          world&apos;s most recognizable and iconic Apparel Design Studio and
+          Garment Manufacturer.
         </p>
       </div>
     </div>

@@ -120,7 +120,7 @@ export default function ServicesPage() {
                 accept is important. We give wings to your raw idea and make it
                 presentable for your consumer so that they find a meaning out of
                 it. We help in building your idea to a meaningful concept
-                keeping consumer's mood in mind.
+                keeping consumer&apos;s mood in mind.
               </p>
             </div>
           </div>
