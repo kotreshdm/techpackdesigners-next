@@ -7,13 +7,13 @@ const inter = Inter({ subsets: ["latin"] });
 import ReactReduxProvider from "@/utils/ReactReduxProvider";
 import ThemeProvider from "@/utils/ThemeProvider";
 import ApplicationFooter from "@/components/ApplicationFooter";
+import Constants from "@/utils/Constants";
+import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Clothing Designer | Tech Pack Designer | Clothing Manufacturer",
-  description:
-    "Clothing Designer, Apparel Tech Pack Designer  and Clothing Manufacturer Assist Brands in Apparel Design, Tech Packs and Garment Manufacturing",
-  keywords:
-    "Clothing Designer,Clothing Manufacturer, Clothing Design, Apparel Tech Pack, Garment Production, Garment Manufacturer, Clothing Line Sheet, Tech Pack Designer,Fashion Studio, Measurement Spec Sheet,Garment Producer, Garment Manufacturer, Apparel Manufacturer, designer studio clothing,garment spec sheet, apparel line sheet, Freelance Fashion Designer",
+  title: Constants.SEO.title,
+  description: Constants.SEO.description,
+  keywords: Constants.SEO.keywords,
 };
 
 export default function RootLayout({
@@ -23,11 +23,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <Head>
+        <link
+          href='https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap'
+          rel='stylesheet'
+        />
+        <link
+          href='//fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swa'
+          rel='stylesheet'
+        />
+      </Head>
       <body>
         <ReactReduxProvider>
           <ThemeProvider>
             <ApplicationHeader />
-            <main className='flex min-h-screen flex-col items-center justify-between px-8 py-5'>
+            <main className='items-center min-h-screen justify-between dark:bg-gray-800'>
               {children}
             </main>
             <ApplicationFooter />

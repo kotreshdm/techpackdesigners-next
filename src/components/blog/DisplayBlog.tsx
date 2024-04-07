@@ -1,6 +1,9 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Constants from "../../utils/Constants";
 import LoadingComp from "../LoadingComp";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 interface Post {
   postSlug: string;
   bannerImage?: string;
@@ -11,14 +14,26 @@ interface Props {
   posts: Post[];
 }
 const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
+  const { searchPosts } = useSelector((state: any) => state.posts);
+  const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
-
   useEffect(() => {
     setIsClient(true);
   }, []);
   if (!isClient) {
     return <LoadingComp />;
   }
+
+  const highlightDesc = (name: any) => {
+    if (!searchPosts) return name;
+    const searchTerm = searchPosts.toLowerCase();
+    const startIndex = name.toLowerCase().indexOf(searchTerm);
+    if (startIndex === -1) return name;
+    const endIndex = startIndex + searchPosts.length;
+    const highlightedSubstring = name.substring(startIndex, endIndex);
+    const highlightedText = `<span class="highlight">${highlightedSubstring}</span>`;
+    return name.slice(0, startIndex) + highlightedText + name.slice(endIndex);
+  };
   return (
     <div className='container grid grid-cols-1 md:grid-cols-4 gap-5 m-auto pb-3 pt-5 '>
       {posts &&
@@ -35,7 +50,9 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                 />
               </a>
             ) : (
-              <div className='bg-gray-800 rounded-t-lg h-60 dark:bg-gray-800 dark:border-gray-700 noImageDiv flex justify-center items-center'>
+              <div
+                style={{ height: "11rem" }}
+                className='bg-gray-800 rounded-t-lg dark:bg-gray-800 dark:border-gray-700 noImageDiv flex justify-center items-center'>
                 <p className='text-white p-5'>{post.postName}</p>
               </div>
             )}
@@ -43,20 +60,27 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
               <h5
                 className='mb-2 font-bold tracking-tight text-gray-700 dark:text-white'
                 style={{
-                  maxHeight: "3.4rem",
-                  minHeight: "3.4rem",
+                  maxHeight: "3.3rem",
+                  minHeight: "3.3rem",
                   overflow: "hidden",
                   display: "-webkit-box",
                   WebkitLineClamp: 2,
-                  lineHeight: "25px",
+                  lineHeight: 1.3,
                   fontSize: "21px",
                   WebkitBoxOrient: "vertical",
                 }}>
                 <a href={`${Constants.Navigation.blog}/${post.postSlug}`}>
-                  {post.postName}
+                  {pathname === "/search" ? (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: highlightDesc(post.postName),
+                      }}
+                    />
+                  ) : (
+                    post.postName
+                  )}
                 </a>
               </h5>
-
               <p
                 className='mb-3 text-gray-700 dark:text-gray-400'
                 style={{
@@ -69,7 +93,15 @@ const DispalyBlog: React.FC<Props> = ({ posts }: any) => {
                   WebkitLineClamp: 5,
                   WebkitBoxOrient: "vertical",
                 }}>
-                {post.SEODescription}
+                {pathname === "/search" && post.SEODescription ? (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: highlightDesc(post.SEODescription),
+                    }}
+                  />
+                ) : (
+                  post.SEODescription
+                )}
               </p>
               <a
                 href={`${Constants.Navigation.blog}/${post.postSlug}`}

@@ -4,30 +4,282 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  padding-bottom: 10px;
+}
+li {
+  padding-left: 20px;
+  text-indent: -20px;
+}
+li::first-line {
+  text-indent: 0;
+}
+
+.catList {
+  background-color: #145260;
+}
+.catList p span {
+  color: #ffffff;
+  fill: #ffffff;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.1;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+/* All Page css */
+.pages {
+  padding-top: 20px;
+}
+.pages a {
+  color: rgb(16, 16, 109);
+}
+.dark .pages a {
+  color: rgb(155, 155, 235);
+}
+.pages .main-heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+}
+.pages .main-heading.middle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+}
+.pages .sub-heading {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+.pages .sub-heading3 {
+  font-weight: 500;
+  font-size: 17px;
+}
+.pages .content {
+  text-align: justify;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+.pages .content.blod {
+  font-weight: 500;
+}
+.pages .content.note {
+  font-size: 14px;
+}
+.pages .team .sub-heading {
+  text-align: center;
+  padding-bottom: 15px;
+}
+.pages .team .team-name {
+  font-size: 24px;
+  font-weight: 600;
+}
+.pages .team .team-title {
+  font-size: 17px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.pages .team .content {
+  font-size: 16px;
+}
+.pages .services .heading {
+  font-size: 21px;
+  text-align: center;
+}
+.pages .services .content {
+  font-size: 14px;
+  line-height: 22px;
+  padding: 5px 0;
+}
+.pages.techpack .services .serdiv {
+  border: 1px solid #037ac5;
+}
+.pages.techpack .services .heading {
+  background-color: #037ac5;
+  color: #fff;
+}
+.pages .production {
+  padding-top: 20px;
+}
+.pages .production .serdiv {
+  border: 1px solid #037ac5;
+}
+.pages .production .heading {
+  background-color: #037ac5;
+  color: #fff;
+  font-size: 20px;
+  text-align: left;
+  padding: 5px 10px;
+}
+.pages .production .card-image {
+  margin: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+.pages.techpack .services a {
+  color: #037ac5;
+}
+/* Pricing table CCSS */
+.pricing-table .box {
+  padding: 0px;
+}
+
+.pricing-table .box .heading {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 32px;
+  padding: 35px 35px 0;
+}
+.pricing-table .box .cart-sec {
+  padding: 0 35px;
+}
+.pricing-table .box .price {
+  font-weight: 800;
+  color: #000;
+  font-size: 36px;
+}
+.pricing-table .box span {
+  min-width: 30px;
+}
+.pricing-table .box li svg {
+  display: inline;
+  margin-right: 10px;
+}
+.pricing-table li.non-active svg {
+  visibility: hidden;
+  margin-right: 10px;
+}
+.pricing-table .box .button-section {
+  color: #fff;
+}
+.pricing-table .box .button-section {
+  padding: 50px 30px;
+}
+.pricing-table .box .button-section .btn {
+  margin: auto;
+  font-weight: 700;
+  border-radius: 0;
+  padding: 5px 15px;
+  min-width: 300px;
+}
+/* Box 1Related css */
+.pricing-table .box1 {
+  background-color: #c108410f;
+  color: #c10841;
+}
+.pricing-table .box1 .icon-sction {
+  border: 1px solid #c10841;
+}
+.pricing-table .box1 li {
+  border-top: 1px solid #c108411a;
+  padding: 15px 35px;
+}
+.pricing-table .box1 .non-active {
+  color: #c1084166;
+}
+.pricing-table .box1 .button-section {
+  border-top: 1px solid #c108411a;
+  background: #c108411a;
+}
+.pricing-table .box1 .button-section .btn:hover {
+  background: #c10841cc;
+  border-color: #c10841cc;
+}
+
+.pricing-table .box1 .button-section .btn {
+  background-color: #c10841;
+}
+/* Box 2 related css */
+.pricing-table .box2 {
+  background-color: #f894060f;
+  color: #f89406;
+}
+.pricing-table .box2 .icon-sction {
+  border: 1px solid #f89406;
+}
+.pricing-table .box2 li {
+  border-top: 1px solid #f894060f;
+  padding: 15px 35px;
+}
+.pricing-table .box2 .non-active {
+  color: #f894060f;
+}
+.pricing-table .box2 .button-section {
+  border-top: 1px solid #f894060f;
+  background: #f8940666;
+}
+.pricing-table .box2 .button-section .btn:hover {
+  background: #faa937;
+  border-color: #faa937;
+}
+.pricing-table .box2 .button-section .btn {
+  background-color: #f89406;
+}
+/* Box 3 related CSS  */
+.pricing-table .box3 {
+  background-color: #738d000f;
+  color: #738d00;
+}
+.pricing-table .box3 .icon-sction {
+  border: 1px solid #738d00;
+}
+.pricing-table .box3 li {
+  border-top: 1px solid #738d000f;
+  padding: 15px 35px;
+}
+.pricing-table .box3 .non-active {
+  color: #738d000f;
+}
+.pricing-table .box3 .button-section {
+  border-top: 1px solid #738d000f;
+  background: #738d0066;
+}
+.pricing-table .box3 .button-section .btn:hover {
+  background: #9dc000;
+  border-color: #9dc000;
+}
+.pricing-table .box3 .button-section .btn {
+  background-color: #738d00;
+}
+/* Contact page css */
+.contact-page .heading {
+  text-align: left !important;
+}
+.pages.contact-page .content {
+  margin-bottom: 0px;
 }

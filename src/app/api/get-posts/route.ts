@@ -6,8 +6,8 @@ export async function GET() {
     // Get a connection from the pool
     const db = await pool.getConnection();
 
-    // Execute SQL queries to fetch posts, categories, and users
-    const postsQuery = "SELECT * FROM posts";
+    const postsQuery =
+      "SELECT * FROM posts WHERE status='Published' ORDER BY postId DESC";
     const [postsResult] = await db.execute(postsQuery);
     const posts = postsResult as { categoryId: number; createdBy: number }[]; // Extract rows
 
