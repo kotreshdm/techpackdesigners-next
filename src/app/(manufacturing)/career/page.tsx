@@ -7,14 +7,14 @@ export default function CareerPage() {
         </h1>
         <p className='content'>
           We are an Established Apparel designer and Manufacturer focusing on
-          Men's and Women's Outerwear.Our clients are a luxury international
-          fashion and premium lifestyle companies with products ranging from
-          Man's apparel, Women's Apparel, Active Wear, Lingeries and other
-          Outerwear Garments. We are in business for over 12 years, and
-          developed a distinct image and have become one of the world's most
-          recognizable and iconic Apparel Design Studio and Garment
-          Manufacturer. We are looking for Technical Fashion Designerto join our
-          Team
+          Men&apos;s and Women&apos;s Outerwear.Our clients are a luxury
+          international fashion and premium lifestyle companies with products
+          ranging from Man&apos;s apparel, Women&apos;s Apparel, Active Wear,
+          Lingeries and other Outerwear Garments. We are in business for over 12
+          years, and developed a distinct image and have become one of the
+          world&apos;s most recognizable and iconic Apparel Design Studio and
+          Garment Manufacturer. We are looking for Technical Fashion Designerto
+          join our Team
         </p>
         <div className='pb-4'>
           <h2 className='sub-heading'>Job Responsibilities</h2>
@@ -118,12 +118,12 @@ export default function CareerPage() {
         </div>
         <p className='content'>
           We are an Established Clothing Designer and Manufacturer focusing on
-          Men's and Women's Outerwear.Our clients are a luxury international
-          fashion and premium lifestyle companies with products ranging from
-          Man's apparel, Women's Apparel, Active Wear, Lingeries and other
-          Outerwear Garments. We are in business for over 12 years, and
-          developed a distinct image and have become one of the world's most
-          recognizable and iconic Apparel Design Studio and Garment
+          Men&apos;s and Women&apos;s Outerwear.Our clients are a luxury
+          international fashion and premium lifestyle companies with products
+          ranging from Man&apos;s apparel, Women&apos;s Apparel, Active Wear,
+          Lingeries and other Outerwear Garments. We are in business for over 12
+          years, and developed a distinct image and have become one of the
+          world's most recognizable and iconic Apparel Design Studio and Garment
           Manufacturer.
         </p>
       </div>
