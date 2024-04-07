@@ -147,6 +147,9 @@ li::first-line {
 }
 .pages .production .card-image {
   margin: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
 }
 .pages.techpack .services a {
   color: #037ac5;
@@ -272,4 +275,11 @@ li::first-line {
 }
 .pricing-table .box3 .button-section .btn {
   background-color: #738d00;
+}
+/* Contact page css */
+.contact-page .heading {
+  text-align: left !important;
+}
+.pages.contact-page .content {
+  margin-bottom: 0px;
 }

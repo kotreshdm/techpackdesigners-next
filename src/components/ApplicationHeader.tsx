@@ -100,6 +100,11 @@ const ApplicationHeader = () => {
               <Dropdown.Item>Career</Dropdown.Item>
             </Link>
           </Dropdown>
+          <Navbar.Link active={path === "/contact"} as={"div"}>
+            <Link href='/contact' passHref>
+              Contact
+            </Link>
+          </Navbar.Link>
         </Navbar.Collapse>
       </div>
       <div className='flex gap-0 md:order-4'>
