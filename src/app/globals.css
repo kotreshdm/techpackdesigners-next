@@ -54,6 +54,10 @@ li::first-line {
   background-color: yellow;
 }
 
+.pagination-div li {
+  padding-left: 0;
+  text-indent: 0;
+}
 /* All Page css */
 .pages {
   padding-top: 20px;

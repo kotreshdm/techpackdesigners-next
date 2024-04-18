@@ -52,7 +52,7 @@ const Blog: React.FC = () => {
       ) : (
         <>
           <DisplayBlog posts={displayPosts} />
-          <div className='flex overflow-x-auto sm:justify-center py-6'>
+          <div className='flex overflow-x-auto sm:justify-center py-6 pagination-div'>
             <Pagination
               layout='pagination'
               currentPage={postsCurrentPage}

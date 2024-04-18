@@ -81,7 +81,7 @@ const CategoriesDisp = ({ params }: Props) => {
             </p>
           )}
 
-          <div className='flex overflow-x-auto sm:justify-center py-6'>
+          <div className='flex overflow-x-auto sm:justify-center py-6 pagination-div'>
             {totalPages > 1 ? (
               <Pagination
                 layout='pagination'
