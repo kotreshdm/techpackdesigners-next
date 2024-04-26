@@ -15,6 +15,7 @@ const ContactForm = () => {
   const [publishSuccess, setPublishSuccess] = useState("");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log("res  subnmit");
     try {
       const res = await fetch("/api/create-contact-data", {
         method: "POST",
@@ -23,8 +24,10 @@ const ContactForm = () => {
           "content-type": "application/json",
         },
       });
+      console.log("res..............", res);
+
       if (res.ok) {
-        // setFormData(initialState);
+        setFormData(initialState);
         setPublishSuccess(
           "Your Feedback is Successfully Sent We will Getback to You As Soon As Possible!"
         );

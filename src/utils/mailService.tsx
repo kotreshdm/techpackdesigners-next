@@ -10,12 +10,11 @@ export async function sendMail({ subject, fromMail, content }: any) {
   });
 
   var mailOptions = {
-    to: process.env.NODEMAILER_EMAIL,
     from: fromMail,
+    to: process.env.NODEMAILER_EMAIL,
     subject: subject,
     html: content,
   };
-
   transporter.sendMail(mailOptions, function (error: any) {
     if (error) {
       throw new Error(error);
