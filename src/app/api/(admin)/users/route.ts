@@ -1,6 +1,5 @@
 import pool from "@/app/libs/mysql";
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 import CustomResponse from "@/utils/CustomResponse";
 
 export async function POST(req: any, res: any) {
@@ -27,10 +26,6 @@ export async function POST(req: any, res: any) {
   }
 
   const { password: pass, ...rest } = user;
-  const token = jwt.sign(
-    { id: user.userId, isAdmin: user.isAdmin },
-    process.env.JWT_SECRET
-  );
 
   return NextResponse.json({ status: 200, success: true, data: rest });
 }
