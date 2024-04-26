@@ -22,7 +22,7 @@ export async function POST(req: any, res: any) {
 
   const passwordMatch = true;
   if (!passwordMatch) {
-    return CustomResponse("Invalid password");
+    return CustomResponse("Invalid password!");
   }
 
   const { password: pass, ...rest } = user;
