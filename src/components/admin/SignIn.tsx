@@ -37,8 +37,9 @@ function SignIn() {
         dispatch(signInFailure(response.message));
       }
       if (response.success) {
-        dispatch(signInSuccess(response.data));
-        console.log(response);
+        const token = response.data.token;
+        localStorage.setItem("access_token", token);
+        dispatch(signInSuccess(response.data.user));
       }
     } catch (error: any) {
       dispatch(signInFailure(error.message));

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import CustomResponse from "@/utils/CustomResponse";
 import connectDB from "@/app/libs/mongodb";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 interface User {
   _id: string;
   name: string;
@@ -44,11 +44,17 @@ export async function POST(req: any, res: any) {
     if (!validUser) {
       return CustomResponse("User not found");
     }
+    // Generate a JWT token
+    const token = jwt.sign(
+      { userId: (validUser as { _id: string })._id, email: validUser.email },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "1h" }
+    );
     const { password: pass, ...rest } = validUser;
     return NextResponse.json({
       status: 200,
       success: true,
-      data: rest,
+      data: { user: rest, token },
     });
   } catch (error) {
     console.error("Error inserting data into MongoDB:", error);
