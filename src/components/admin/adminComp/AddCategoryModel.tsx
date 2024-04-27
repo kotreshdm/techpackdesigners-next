@@ -48,9 +48,17 @@ const AddCategoryModel = ({
         toast.error("No changes made");
         return;
       }
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        toast.error("Token expired");
+        return;
+      }
       const res = await fetch(url, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(data),
       });
 
