@@ -73,10 +73,11 @@ const MyTable = ({
                   if (index >= startIndex && index < endIndex) {
                     prepareRow(row);
                     return (
-                      <tr {...row.getRowProps()} keu={index}>
+                      <tr {...row.getRowProps()} key={index}>
                         <td>{serialNumber}</td>
-                        {row.cells.map((cell: any) => (
+                        {row.cells.map((cell: any, inIndex: number) => (
                           <td
+                            key={inIndex}
                             {...cell.getCellProps()}
                             className='truncate max-w-xs'>
                             {cell.render("Cell")}
