@@ -49,11 +49,14 @@ const MyTable = ({
         <div>
           <table {...getTableProps()} className='container mx-auto'>
             <thead>
-              {headerGroups.map((headerGroup: any) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroups.map((headerGroup: any, index: number) => (
+                <tr {...headerGroup.getHeaderGroupProps()} key={index}>
                   <th style={{ width: "100px" }}>SL No</th>
-                  {headerGroup.headers.map((column: any) => (
-                    <th style={{ width: "100px" }} {...column.getHeaderProps()}>
+                  {headerGroup.headers.map((column: any, inIndex: number) => (
+                    <th
+                      style={{ width: "100px" }}
+                      {...column.getHeaderProps()}
+                      key={inIndex}>
                       {column.render("Header")}
                     </th>
                   ))}
@@ -70,7 +73,7 @@ const MyTable = ({
                   if (index >= startIndex && index < endIndex) {
                     prepareRow(row);
                     return (
-                      <tr {...row.getRowProps()}>
+                      <tr {...row.getRowProps()} keu={index}>
                         <td>{serialNumber}</td>
                         {row.cells.map((cell: any) => (
                           <td
