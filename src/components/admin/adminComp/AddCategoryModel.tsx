@@ -16,7 +16,7 @@ const AddCategoryModel = ({
   const [formData, setFormData] = useState(initialFormData);
   const filePickerRef = useRef();
 
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
 
@@ -31,7 +31,7 @@ const AddCategoryModel = ({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     let data = { ...formData };
     if (formData.name) {
       data.slug = formData.name
@@ -41,58 +41,34 @@ const AddCategoryModel = ({
         .replace(/[^a-zA-Z0-9-]/g, "");
     }
 
-    // try {
-    //   if (imageFile) {
-    //     const params = {
-    //       ACL: "public-read",
-    //       Body: imageFile,
-    //       Key: `categories/${data.slug}`,
-    //     };
-    //     const result = await MyBucket.putObject(params)
-    //       .on("httpUploadProgress", (evt) => {
-    //         return setImageFileUploadProgress(
-    //           Math.round((evt.loaded / evt.total) * 100)
-    //         );
-    //       })
-    //       .promise();
+    let url = "/api/categories";
 
-    //     const downloadURL = `https://${Constants.S3.S3_BUCKET}.s3.${Constants.S3.REGION}.amazonaws.com/${params.Key}`;
-    //     data.catBanner = downloadURL;
-    //   }
-    //   if (Object.keys(data).length === 0) {
-    //     toast.error("No changes made");
-    //     return;
-    //   }
+    try {
+      if (Object.keys(formData).length === 0) {
+        toast.error("No changes made");
+        return;
+      }
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    //   let url = ApiConstants.category.create;
-    //   let method = "POST";
-    //   if (selectedData.categoryId > -1) {
-    //     url = ApiConstants.category.update;
-    //     method = "PUT";
-    //     data.categoryId = selectedData.categoryId;
-    //   }
-    //   await addEditCategoryAPI({
-    //     data,
-    //     url,
-    //     method,
-    //   }).then((response) => {
-    //     if (response.status === 200) {
-    //       toast.success(
-    //         `${formData.name || selectedData.name} is Categotry Updated`
-    //       );
-    //       refreshAfterSuccess();
-    //       closeDialog();
-    //       setImageFile(null);
-    //       setImageFileUrl(null);
-    //       setImageFileUploadProgress(null);
-    //     } else {
-    //       toast.error(response.message);
-    //     }
-    //   });
-    //   setLoading(false);
-    // } catch (err) {
-    //   toast.error(err);
-    // }
+      const response = await res.json();
+      console.log("response", response);
+
+      if (!response.success) {
+        toast.error(response.message);
+      }
+      if (response.success) {
+        toast.success(response.message);
+        closeDialog();
+      }
+    } catch (error: any) {
+      toast.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <>
