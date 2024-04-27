@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const DashboardPage = () => {
   const { currentUser } = useSelector((state: any) => state.user);
+  console.log("current user", currentUser);
   if (!currentUser) {
     return <SignIn />;
   }
