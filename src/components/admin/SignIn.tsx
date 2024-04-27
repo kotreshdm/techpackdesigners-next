@@ -8,7 +8,7 @@ function SignIn() {
   const { loading, error } = useSelector((state: any) => state.user);
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
-    name: "kkk  kkkk",
+    name: "kotresh",
     email: "kk@kk.com",
     password: "Test#234",
   });
