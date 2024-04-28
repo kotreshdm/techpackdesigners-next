@@ -359,3 +359,9 @@ li::first-line {
 .five-items .item5 {
   background-color: #c10841;
 }
+
+/* dashboard sidebar  */
+
+.side-bar li span {
+  margin-left: 20px;
+}

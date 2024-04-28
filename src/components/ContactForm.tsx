@@ -15,6 +15,7 @@ const ContactForm = () => {
   const [publishSuccess, setPublishSuccess] = useState("");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log("res  subnmit");
     try {
       const res = await fetch("/api/create-contact-data", {
         method: "POST",

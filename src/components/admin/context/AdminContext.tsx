@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 type AdminContextType = {
   tab: string;
@@ -21,3 +21,7 @@ const AdminContextProvider: React.FC = ({ children }: any) => {
 };
 
 export default AdminContextProvider;
+
+export function useAdminContext() {
+  return useContext(AdminContext);
+}

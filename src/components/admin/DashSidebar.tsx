@@ -13,18 +13,19 @@ import { useAdminContext } from "./Dashboard";
 import { signoutSuccess } from "@/redux/user/userSlice";
 const DashSidebar = () => {
   const dispatch = useDispatch();
-  const { tab } = useAdminContext();
+  const { tab, setTab } = useAdminContext();
   const { currentUser } = useSelector((state: any) => state.user);
 
   const handleSignout = () => {
     dispatch(signoutSuccess());
   };
   return (
-    <Sidebar className='w-full md:w-56 min-h-screen'>
+    <Sidebar className='w-full md:w-56 min-h-screen side-bar'>
       <Sidebar.Items>
         <Sidebar.ItemGroup className='flex flex-col gap-1'>
           {currentUser && currentUser.isAdmin && (
             <Sidebar.Item
+              onClick={() => setTab("dash")}
               active={tab === "dash" || !tab}
               icon={HiChartPie}
               as='div'>
@@ -34,6 +35,7 @@ const DashSidebar = () => {
 
           <Sidebar.Item
             active={tab === "profile"}
+            onClick={() => setTab("profile")}
             icon={HiUser}
             label={currentUser.isAdmin ? "Admin" : "User"}
             labelColor='dark'
@@ -45,6 +47,7 @@ const DashSidebar = () => {
             <>
               <Sidebar.Item
                 active={tab === "posts"}
+                onClick={() => setTab("posts")}
                 icon={HiDocumentText}
                 as='div'>
                 Posts
@@ -52,16 +55,18 @@ const DashSidebar = () => {
 
               <Sidebar.Item
                 active={tab === "users"}
+                onClick={() => setTab("users")}
                 icon={HiOutlineUserGroup}
                 as='div'>
                 Users
               </Sidebar.Item>
 
               <Sidebar.Item
-                active={tab === "comments"}
+                active={tab === "category"}
+                onClick={() => setTab("category")}
                 icon={HiAnnotation}
                 as='div'>
-                Comments
+                Category
               </Sidebar.Item>
             </>
           )}

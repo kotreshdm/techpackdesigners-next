@@ -2,14 +2,15 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signInFailure, signInSuccess } from "@/redux/user/userSlice";
-// import Oauth from "../components/Oauth";
 
 function SignIn() {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state: any) => state.user);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    name: "kotresh",
+    email: "kk@kk.com",
+    password: "Test#234",
   });
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
@@ -19,8 +20,12 @@ function SignIn() {
     if (!formData.email || !formData.password) {
       return dispatch(signInFailure("Please fill out all fields."));
     }
+    let url = "/api/sign-in";
+    if (isSignUp) {
+      url = "/api/sign-up";
+    }
     try {
-      const res = await fetch("/api/users", {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -32,12 +37,15 @@ function SignIn() {
         dispatch(signInFailure(response.message));
       }
       if (response.success) {
-        dispatch(signInSuccess(response.data));
+        const token = response.data.token;
+        localStorage.setItem("access_token", token);
+        dispatch(signInSuccess(response.data.user));
       }
     } catch (error: any) {
       dispatch(signInFailure(error.message));
     }
   };
+
   return (
     <div className='min-h-screen'>
       <div className='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5'>
@@ -48,6 +56,18 @@ function SignIn() {
         </div>
         <div className='flex-1'>
           <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
+            {isSignUp ? (
+              <div>
+                <Label value='Your name' />
+                <TextInput
+                  type='text'
+                  placeholder='User name'
+                  id='name'
+                  onChange={handleChange}
+                  value={formData.name}
+                />
+              </div>
+            ) : null}
             <div>
               <Label value='Your email' />
               <TextInput
@@ -77,18 +97,25 @@ function SignIn() {
                   <Spinner size='sm' />
                   <span className='pl-3'>Loading...</span>
                 </>
+              ) : isSignUp ? (
+                "Sign Up"
               ) : (
                 "Sign In"
               )}
             </Button>
-            {/* <Oauth /> */}
           </form>
-          {/* <div className='flex gap-2 text-sm mt-5'>
-            <span>Dont have an account?</span>
-            <Link to='/sign-up' className='text-blue-500'>
-              Sign Up
-            </Link>
-          </div> */}
+
+          <div className='flex gap-2 text-sm mt-5'>
+            <span>
+              {isSignUp ? "Already have account?" : "Don't have an account?"}
+            </span>
+            <button
+              onClick={() => setIsSignUp(!isSignUp)}
+              className='text-blue-500'>
+              {isSignUp ? "Sign In" : "Sign Up"}
+            </button>
+          </div>
+
           {error && (
             <Alert className='mt-5' color='failure'>
               {error}
