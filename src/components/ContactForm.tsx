@@ -23,8 +23,10 @@ const ContactForm = () => {
           "content-type": "application/json",
         },
       });
+      console.log("res..............", res);
+
       if (res.ok) {
-        // setFormData(initialState);
+        setFormData(initialState);
         setPublishSuccess(
           "Your Feedback is Successfully Sent We will Getback to You As Soon As Possible!"
         );
