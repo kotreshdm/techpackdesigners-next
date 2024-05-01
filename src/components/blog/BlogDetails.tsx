@@ -9,6 +9,7 @@ import Constants from "@/utils/Constants";
 import DispalyBlog from "./DisplayBlog";
 import CategoriesBanner from "./CategoriesBanner";
 import LoadingComp from "../LoadingComp";
+import Head from "next/head";
 export default function BlogDetails({ slug }: any) {
   const dispatch = useDispatch();
   const { posts, post, loading } = useSelector((state: any) => state.posts);
@@ -48,6 +49,12 @@ export default function BlogDetails({ slug }: any) {
   }
   return (
     <>
+      <Head>
+        <title>{"metadata.title"}</title>
+        <meta name='description' content={"metadata.description"} />
+        <meta name='keywords' content={"metadata.keywords"} />
+        {/* Add other metadata tags as needed */}
+      </Head>
       <CategoriesBanner />
       <div className='details container'>
         <div className='grid grid-cols-2 md:grid-cols-12 '>
