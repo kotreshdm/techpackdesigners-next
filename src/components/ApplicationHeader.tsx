@@ -28,7 +28,9 @@ const ApplicationHeader = () => {
     dispatch(fetchCategories() as any);
     dispatch(fetchPosts() as any);
     dispatch(fetchPorifilio() as any);
+    console.log("Refreshed....");
   }, []);
+
   const navMenu = [
     {
       label: "Home",
