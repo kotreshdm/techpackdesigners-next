@@ -32,7 +32,7 @@ export default function BlogDetails({ slug }: any) {
       setKeepReading(readMore);
     }
   }, [post]);
-  let url = Constants.baseURL + "blog/" + slug;
+  let url = "blog/" + slug;
   let quote = post?.SEODescription;
   let hashtag = "#" + post?.SEOKeywords;
   if (loading) {
