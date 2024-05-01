@@ -1,41 +1,21 @@
 import { NextResponse } from "next/server";
-import pool from "@/app/libs/mysql";
+import connectDB from "@/app/libs/mongodb";
 
 export async function GET() {
   try {
-    // Get a connection from the pool
-    const db = await pool.getConnection();
+    const db = await connectDB();
+    const catCollection = db.collection("categories");
+    const categories = await catCollection.find().toArray();
 
-    const postsQuery =
-      "SELECT * FROM posts WHERE status='Published' ORDER BY postId DESC";
-    const [postsResult] = await db.execute(postsQuery);
-    const posts = postsResult as { categoryId: number; createdBy: number }[]; // Extract rows
+    const postCollection = db.collection("posts");
+    const posts = await postCollection.find().toArray();
 
-    const categoryQuery = "SELECT * FROM category";
-    const [categoriesResult] = await db.execute(categoryQuery);
-    const categories = categoriesResult as {
-      categoryId: number;
-      name: string;
-      slug: string;
-    }[]; // Extract rows
+    const userCollection = db.collection("users");
+    const allUsers = await userCollection.find().toArray();
 
-    const userQuery = "SELECT * FROM users";
-    const [allUsersResult] = await db.execute(userQuery);
-    const allUsers = allUsersResult as {
-      userId: number;
-      userName: string;
-      profilePicture: string;
-    }[]; // Extract rows
-
-    // Release the connection back to the pool
-    db.release();
-
-    // Map over the posts and enrich them with category and user information
     const postWithUserNameAndCategory = posts.map((post) => {
-      const catName = categories.find(
-        (cat) => cat.categoryId === post.categoryId
-      );
-      const user = allUsers.find((user) => user.userId === post.createdBy);
+      const catName = categories.find((cat) => cat._id.equals(post.categoryId));
+      const user = allUsers.find((user) => user._id.equals(post.createdBy));
       return {
         ...post,
         categoryName: catName ? catName.name : null,
