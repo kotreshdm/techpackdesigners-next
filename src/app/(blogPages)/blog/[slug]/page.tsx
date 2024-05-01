@@ -7,30 +7,30 @@ type Props = {
   params: { slug: string };
 };
 
-const getPostDetails = async (slug: string): Promise<string> => {
-  console.log(`${Constants.apiRoutes.getpostOnslug}/${slug}`);
+// const getPostDetails = async (slug: string): Promise<string> => {
+//   console.log(`${Constants.apiRoutes.getpostOnslug}/${slug}`);
 
-  const response: any = await axios.get(
-    `${Constants.apiRoutes.getpostOnslug}/${slug}`
-  );
-  return response.data;
-};
+//   const response: any = await axios.get(
+//     `${Constants.apiRoutes.getpostOnslug}/${slug}`
+//   );
+//   return response.data;
+// };
 
-export const generateMetadata = async ({
-  params,
-}: Props): Promise<Metadata> => {
-  const { slug } = params;
-  const response: any = await getPostDetails(slug);
-  return {
-    title: response.postName ? `${response.postName}` : Constants.SEO.title,
-    description: response.description
-      ? `${response.description}`
-      : Constants.SEO.description,
-    keywords: response.keywords
-      ? `${response.keywords}`
-      : Constants.SEO.keywords,
-  };
-};
+// export const generateMetadata = async ({
+//   params,
+// }: Props): Promise<Metadata> => {
+//   const { slug } = params;
+//   const response: any = await getPostDetails(slug);
+//   return {
+//     title: response.postName ? `${response.postName}` : Constants.SEO.title,
+//     description: response.description
+//       ? `${response.description}`
+//       : Constants.SEO.description,
+//     keywords: response.keywords
+//       ? `${response.keywords}`
+//       : Constants.SEO.keywords,
+//   };
+// };
 
 interface BlogDetailsDisplayProps {
   slug: String;
