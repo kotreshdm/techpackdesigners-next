@@ -1,5 +1,4 @@
 const Constants = {
-  baseURL: "http://localhost:3000/",
   Navigation: {
     home: "/",
     about: "/about",
@@ -14,12 +13,7 @@ const Constants = {
     categoty: "/category/",
     search: "/search",
   },
-  // S3: {
-  //   S3_BUCKET: import.meta.env.VITE_S3_BUCKET,
-  //   REGION: import.meta.env.VITE_REGION,
-  //   ACCESS_KEY: import.meta.env.VITE_ACCESS_KEY,
-  //   SECRET_ACCESS_KEY: import.meta.env.VITE_SECRET_ACCESS_KEY,
-  // },
+
   SocialMedia: {
     fb: "fburl",
     twitter: "fburl",
@@ -27,10 +21,10 @@ const Constants = {
     linkedIn: "fburl",
   },
   apiRoutes: {
-    getAllPosts: "http://localhost:3000/api/get-posts",
-    getAllCategories: "http://localhost:3000/api/get-categories",
-    getAllPortfilio: "http://localhost:3000/api/get-portfilio",
-    getpostOnslug: "http://localhost:3000/api/posts",
+    getAllPosts: "/api/get-posts",
+    getAllCategories: "/api/get-categories",
+    getAllPortfilio: "/api/get-portfilio",
+    getpostOnslug: "/api/posts",
   },
   SEO: {
     title: "Clothing Designer | Tech Pack Designer | Clothing Manufacturer",
