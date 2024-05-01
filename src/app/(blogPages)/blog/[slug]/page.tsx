@@ -1,8 +1,6 @@
 import BlogDetails from "@/components/blog/BlogDetails";
 import Constants from "@/utils/Constants";
 import axios from "axios";
-import { Metadata } from "next";
-import Head from "next/head";
 import React from "react";
 type Props = {
   params: { slug: string };
@@ -10,8 +8,7 @@ type Props = {
 
 const getPostDetails = async (slug: string): Promise<string> => {
   const response = await axios.get(
-    "https://techpackdesigners.vercel.app/" +
-      `${Constants.apiRoutes.getpostOnslug}/${slug}`
+    Constants.baseUrl + `${Constants.apiRoutes.getpostOnslug}/${slug}`
   );
   return response.data;
 };

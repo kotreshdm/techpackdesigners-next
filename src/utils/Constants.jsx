@@ -1,4 +1,5 @@
 const Constants = {
+  baseUrl: "https://techpackdesigners.vercel.app/",
   Navigation: {
     home: "/",
     about: "/about",
