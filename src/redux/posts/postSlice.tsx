@@ -4,7 +4,7 @@ import axios from "axios";
 
 interface PostState {
   posts: any[];
-  portfilio: any[];
+  portfolio: any[];
   postFetchTime: any;
   categories: any[];
   post: any;
@@ -21,7 +21,7 @@ interface PostState {
 
 const initialState: PostState = {
   posts: [],
-  portfilio: [],
+  portfolio: [],
   postFetchTime: null,
   categories: [],
   post: {},
@@ -42,7 +42,6 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   return response.data;
 });
 
-// Generates async thunk for fetching posts
 export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async () => {
@@ -50,8 +49,9 @@ export const fetchCategories = createAsyncThunk(
     return response.data;
   }
 );
-export const fetchPorifilio = createAsyncThunk(
-  "portfilio/fetchPrrifilio",
+
+export const fetchPortfolio = createAsyncThunk(
+  "portfolio/fetchPortfolio",
   async () => {
     const response = await axios.get(Constants.apiRoutes.getAllPortfilio);
     return response.data;
@@ -105,19 +105,14 @@ const postSlice = createSlice({
     builder
       .addCase(fetchPosts.pending, (state) => {
         state.loading = true;
-        state.searchPosts = "";
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.posts = action.payload;
-        state.error = "";
-        state.postsCurrentPage = 1;
-        state.postFetchTime = new Date();
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.loading = false;
-        state.posts = [];
-        state.error = action.error.message || "Something went wrong";
+        state.error = action.error.message || "";
       })
       .addCase(fetchCategories.pending, (state) => {
         state.loading = true;
@@ -125,16 +120,21 @@ const postSlice = createSlice({
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.categories = action.payload;
-        state.error = "";
-        state.categoriesCurrentPage = 1;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;
-        state.categories = [];
-        state.error = action.error.message || "Something went wrong";
+        state.error = action.error.message || "";
       })
-      .addCase(fetchPorifilio.fulfilled, (state, action) => {
-        state.portfilio = action.payload;
+      .addCase(fetchPortfolio.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchPortfolio.fulfilled, (state, action) => {
+        state.loading = false;
+        state.portfolio = action.payload;
+      })
+      .addCase(fetchPortfolio.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "";
       });
   },
 });

@@ -3,60 +3,32 @@ import Link from "next/link";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Navbar, TextInput, Button, Dropdown } from "flowbite-react";
 import Constants from "../utils/Constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "@/redux/theme/themeSlice";
 import { useRouter } from "next/navigation";
-import {
-  fetchCategories,
-  fetchPorifilio,
-  fetchPosts,
-  updateSearch,
-} from "@/redux/posts/postSlice";
+import { updateSearch } from "@/redux/posts/postSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const ApplicationHeader = () => {
   const path = usePathname();
   const { theme } = useSelector((state: any) => state.theme);
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(updateSearch(searchTerm));
-    dispatch(fetchCategories() as any);
-    dispatch(fetchPosts() as any);
-    dispatch(fetchPorifilio() as any);
-    console.log("Refreshed......");
-  }, []);
 
   const navMenu = [
-    {
-      label: "Home",
-      url: Constants.Navigation.home,
-    },
-    {
-      label: "Blog",
-      url: Constants.Navigation.blog,
-    },
-    {
-      label: "About",
-      url: Constants.Navigation.about,
-    },
-    {
-      label: "Services",
-      url: Constants.Navigation.services,
-    },
-    {
-      label: "Techpack",
-      url: Constants.Navigation.techPack,
-    },
-    {
-      label: "Portfolio",
-      url: Constants.Navigation.portfolio,
-    },
+    { label: "Home", url: Constants.Navigation.home },
+    { label: "Blog", url: Constants.Navigation.blog },
+    { label: "About", url: Constants.Navigation.about },
+    { label: "Services", url: Constants.Navigation.services },
+    { label: "Techpack", url: Constants.Navigation.techPack },
+    { label: "Portfolio", url: Constants.Navigation.portfolio },
   ];
+
   const handleChange = (v: any) => {
     setSearchTerm(v);
     dispatch(updateSearch(v));
@@ -64,12 +36,14 @@ const ApplicationHeader = () => {
       router.push(Constants.Navigation.search);
     }
   };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (searchTerm.length > 3) {
       router.push(Constants.Navigation.search);
     }
   };
+
   return (
     <>
       <ToastContainer
@@ -91,28 +65,28 @@ const ApplicationHeader = () => {
             {navMenu.map((menuItem) => (
               <Navbar.Link
                 active={path === menuItem.url}
-                as={"div"}
+                as='div'
                 key={menuItem.url}>
                 <Link href={menuItem.url} passHref>
                   {menuItem.label}
                 </Link>
               </Navbar.Link>
             ))}
-            <Dropdown arrowIcon={true} inline label={"Manufacturing"}>
-              <Link href={"/apparel-production"}>
+            <Dropdown arrowIcon={true} inline label='Manufacturing'>
+              <Link href='/apparel-production'>
                 <Dropdown.Item>Production</Dropdown.Item>
               </Link>
-              <Link href={"/price"}>
+              <Link href='/price'>
                 <Dropdown.Item>Package & Price</Dropdown.Item>
               </Link>
-              <Link href={"/techpack-quote"}>
+              <Link href='/techpack-quote'>
                 <Dropdown.Item>TechPack Quote</Dropdown.Item>
               </Link>
-              <Link href={"/career"}>
+              <Link href='/career'>
                 <Dropdown.Item>Career</Dropdown.Item>
               </Link>
             </Dropdown>
-            <Navbar.Link active={path === "/contact"} as={"div"}>
+            <Navbar.Link active={path === "/contact"} as='div'>
               <Link href='/contact' passHref>
                 Contact
               </Link>
