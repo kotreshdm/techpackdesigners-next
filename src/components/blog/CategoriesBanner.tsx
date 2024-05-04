@@ -1,10 +1,10 @@
 "use client";
 import { Banner } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Constants from "../../utils/Constants";
-import { fetchCategories, fetchPosts } from "@/redux/posts/postSlice";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 
 interface Category {
   name: string;
@@ -24,28 +24,8 @@ interface RootState {
 }
 
 const CategoriesBanner = () => {
-  const { categories, posts, postFetchTime, refreshTime } = useSelector(
-    (state: RootState) => state.posts
-  );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (categories.length === 0) {
-      dispatch(fetchCategories() as any);
-    }
-    if (posts.length === 0) {
-      dispatch(fetchPosts() as any);
-    } else {
-      if (postFetchTime) {
-        const lastFetchedDate = new Date(postFetchTime);
-        const dataTIme = new Date();
-        const diff = (dataTIme.getTime() - lastFetchedDate.getTime()) / 1000;
+  const { categories } = useSelector((state: RootState) => state.posts);
 
-        if (diff > refreshTime) {
-          dispatch(fetchPosts() as any);
-        }
-      }
-    }
-  }, []);
   return (
     <div>
       <Banner
@@ -57,7 +37,7 @@ const CategoriesBanner = () => {
         <div className='flex w-full justify-between p-2 dark:bg-gray-800  catList'>
           <div className='mx-auto flex items-center'>
             <p className='flex items-center text-sm font-bold  text-gray-500  dark:text-gray-400'>
-              {categories.map((cat) => (
+              {categories.map((cat: any) => (
                 <span key={cat.slug} className='[&_p]:inline'>
                   <Link
                     href={`${Constants.Navigation.categoty}${cat.slug}`}

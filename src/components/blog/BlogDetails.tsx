@@ -17,6 +17,8 @@ export default function BlogDetails({ slug }: any) {
     dispatch(getPostBySlug(slug));
   }, [dispatch, slug, posts]);
 
+  console.log("slug.................", slug);
+
   useEffect(() => {
     if (slug && posts.length > 0) {
       let filteredPosts = posts.filter(

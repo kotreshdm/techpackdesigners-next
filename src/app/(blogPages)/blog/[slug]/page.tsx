@@ -37,6 +37,7 @@ const BlogDetailsDisplayComponent: React.FC<BlogDetailsDisplayProps> =
 export default async function Details({ params }: Props) {
   return (
     <div>
+      params.slug {params.slug}
       <BlogDetailsDisplayComponent slug={params.slug} />
     </div>
   );

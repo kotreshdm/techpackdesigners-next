@@ -37,26 +37,26 @@ const initialState: PostState = {
 };
 
 // Generates async thunk for fetching posts
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const response = await axios.get(Constants.apiRoutes.getAllPosts);
-  return response.data;
-});
+// export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+//   const response = await axios.get(Constants.apiRoutes.getAllPosts);
+//   return response.data;
+// });
 
-export const fetchCategories = createAsyncThunk(
-  "categories/fetchCategories",
-  async () => {
-    const response = await axios.get(Constants.apiRoutes.getAllCategories);
-    return response.data;
-  }
-);
+// export const fetchCategories = createAsyncThunk(
+//   "categories/fetchCategories",
+//   async () => {
+//     const response = await axios.get(Constants.apiRoutes.getAllCategories);
+//     return response.data;
+//   }
+// );
 
-export const fetchPortfolio = createAsyncThunk(
-  "portfolio/fetchPortfolio",
-  async () => {
-    const response = await axios.get(Constants.apiRoutes.getAllPortfilio);
-    return response.data;
-  }
-);
+// export const fetchPortfolio = createAsyncThunk(
+//   "portfolio/fetchPortfolio",
+//   async () => {
+//     const response = await axios.get(Constants.apiRoutes.getAllPortfilio);
+//     return response.data;
+//   }
+// );
 
 const postSlice = createSlice({
   name: "posts",
@@ -65,6 +65,9 @@ const postSlice = createSlice({
     loadPosts: (state, action) => {
       state.loading = false;
       state.posts = action.payload;
+    },
+    loadCategories: (state, action) => {
+      state.categories = action.payload;
     },
     loadingPost: (state) => {
       state.loading = true;
@@ -101,46 +104,47 @@ const postSlice = createSlice({
       state.loading = false;
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchPosts.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.loading = false;
-        state.posts = action.payload;
-      })
-      .addCase(fetchPosts.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "";
-      })
-      .addCase(fetchCategories.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.loading = false;
-        state.categories = action.payload;
-      })
-      .addCase(fetchCategories.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "";
-      })
-      .addCase(fetchPortfolio.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchPortfolio.fulfilled, (state, action) => {
-        state.loading = false;
-        state.portfolio = action.payload;
-      })
-      .addCase(fetchPortfolio.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "";
-      });
-  },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(fetchPosts.pending, (state) => {
+  //       state.loading = true;
+  //     })
+  //     .addCase(fetchPosts.fulfilled, (state, action) => {
+  //       state.loading = false;
+  //       state.posts = action.payload;
+  //     })
+  //     .addCase(fetchPosts.rejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error.message || "";
+  //     })
+  //     .addCase(fetchCategories.pending, (state) => {
+  //       state.loading = true;
+  //     })
+  //     .addCase(fetchCategories.fulfilled, (state, action) => {
+  //       state.loading = false;
+  //       state.categories = action.payload;
+  //     })
+  //     .addCase(fetchCategories.rejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error.message || "";
+  //     })
+  //     .addCase(fetchPortfolio.pending, (state) => {
+  //       state.loading = true;
+  //     })
+  //     .addCase(fetchPortfolio.fulfilled, (state, action) => {
+  //       state.loading = false;
+  //       state.portfolio = action.payload;
+  //     })
+  //     .addCase(fetchPortfolio.rejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.error.message || "";
+  //     });
+  // },
 });
 
 export const {
   loadPosts,
+  loadCategories,
   reset,
   updatePostsCurrentPage,
   getPostBySlug,
