@@ -1,5 +1,5 @@
 const Constants = {
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://techpackdesigners.vercel.app/",
   Navigation: {
     home: "/",
     about: "/about",
