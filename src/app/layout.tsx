@@ -48,7 +48,7 @@ export default async function RootLayout({
           <ThemeProvider>
             <ApplicationHeader />
             <main className='items-center min-h-screen justify-between dark:bg-gray-800'>
-              "response[0].name": {response[0].name}
+              response[0].name: {response[0].name}
               {children}
             </main>
             <ApplicationFooter />
